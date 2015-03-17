@@ -11,10 +11,11 @@ Scroll down for the raw juice.
 
 ## Features
 
-* Material design for that modern aesthetic
 * Responsive design for your handy mobile devices
+* Material design for that modern aesthetic
 * Smooth animations and smart transitions
 * Beautiful fonts for your delicate eyes
+* Small and meaningful color usage
 * Quirky hipster rounded avatars
 * Ample minimalist spacing
 
