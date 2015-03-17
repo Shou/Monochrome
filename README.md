@@ -4,13 +4,10 @@
 With the creeping extinction of modern web design on Zetaboards, I've
 sacrificed my soul, sleep, and virginity to engender this (finally!) responsive
 and material theme. Stand up and enamour this theme with an explosive ovation
-before the fad ends and my sweaty work has been pointless just like it all, and
-the theme joins ranks with its current abhorrent antitheses.
+before *that* fad ends and my sweaty work has been pointless just like it all,
+and the theme joins ranks with its current abhorrent antitheses.
 
-## Screenshots
-
-<img src="http://i.imgur.com/R9aAoMe.png" />
-<img src="http://i.imgur.com/R9aAoMe.png" />
+Scroll down for the raw juice.
 
 ## Features
 
@@ -19,6 +16,12 @@ the theme joins ranks with its current abhorrent antitheses.
 * Beautiful fonts for your delicate eyes
 * Ample minimalist spacing
 * Smooth animations and smart transitions
+* 
+
+## Screenshots
+
+<img src="http://i.imgur.com/R9aAoMe.png" />
+<img src="http://i.imgur.com/R9aAoMe.png" />
 
 ## Installing
 
