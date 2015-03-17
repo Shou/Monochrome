@@ -11,7 +11,7 @@ Scroll down for the raw juice.
 
 ## Features
 
-* Material design inspired for that modern aesthetic
+* Material design for that modern aesthetic
 * Responsive design for your handy mobile devices
 * Smooth animations and smart transitions
 * Beautiful fonts for your delicate eyes
