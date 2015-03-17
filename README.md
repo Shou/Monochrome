@@ -25,9 +25,10 @@ Scroll down for the raw juice.
 ## Installing
 
 Just copy/paste the CSS, and layout files into their equivalent pages. I should
-upload the buttons and settings.
+probably upload the accompanying buttons and settings files.
 
 ## Disclaimer
 
-This is a work in progress. Expect a bumpy ride, for now.
+This is a work in progress. Expect a bumpy ride, for now. Check the source
+stylesheet if you're truly curious about the erroneous state this project is in.
 
