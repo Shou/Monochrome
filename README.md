@@ -16,6 +16,7 @@ Scroll down for the raw juice.
 * Small and meaningful color usage
 * Quirky hipster rounded avatars
 * Ample minimalist spacing
+* Staircase bullet lists
 
 ## Screenshots
 
