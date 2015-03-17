@@ -13,10 +13,10 @@ Scroll down for the raw juice.
 
 * Material design inspired for that modern aesthetic
 * Responsive design for your handy mobile devices
-* Beautiful fonts for your delicate eyes
-* Ample minimalist spacing
 * Smooth animations and smart transitions
-* 
+* Beautiful fonts for your delicate eyes
+* Quirky hipster rounded avatars
+* Ample minimalist spacing
 
 ## Screenshots
 
