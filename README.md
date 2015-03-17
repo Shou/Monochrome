@@ -1,6 +1,4 @@
 
-## About
-
 With the creeping extinction of modern web design on Zetaboards, I've
 sacrificed my soul, sleep, and virginity to engender this (finally!) responsive
 and material theme. Stand up and enamour this theme with an explosive ovation
