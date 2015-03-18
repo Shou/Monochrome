@@ -22,6 +22,7 @@ Scroll down for the raw juice.
 
 <img src="http://i.imgur.com/R9aAoMe.png" />
 <img src="http://i.imgur.com/yGkcloD.png" />
+<img src="http://i.imgur.com/OPoiTJ0.jpg" />
 
 ## Installing
 
