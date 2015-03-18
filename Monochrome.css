@@ -15,6 +15,8 @@
      - padding: 0 0.5em
  - Emoticon box style.
  - index page text spacing is AWFUL.
+ - Hide thread icons, use hidden elements to change the row state and do something interesting.
+     - Color the row appropriately.
 
 */
 
@@ -194,6 +196,11 @@ a:hover, td.c_post:hover a, td.c_post:focus a
 
 /* }}} */
 
+::selection, option:checked
+{ background-color: #37474F
+; color: #ECEFF1
+}
+
 .topic dl.user_info
 { display: none }
 
@@ -324,6 +331,23 @@ input[type="text"]:focus, input[type="password"]:focus, input:not([type]):focus
 { border-left: 2px solid #D0D0D0
 }
 
+input[type="checkbox"]
+{ width: 0
+}
+
+input[type="checkbox"]::after
+{ content: "■"
+; width: 1em
+; height: 1em
+; display: inline-block
+; color: #424242
+; margin: 0 -0.5em
+; text-align: center
+}
+
+input[type="checkbox"]:checked::after
+{ content: "▣"
+}
 .submit_error
 { background: #000000
 ; border: 1px solid #333333
@@ -862,8 +886,8 @@ table.forums tr.forum td.c_last
 { font-weight: 400
 }
 
-td.c_info
-{ margin: 0 1em
+.c_info
+{ margin: 0 0 2em 0
 }
 
 td.c_info-v,td.c_info-t,td.c_info-r {
@@ -1525,10 +1549,6 @@ padding:3px 0;
 
 select
 { vertical-align: middle
-}
- 
-option {
-margin: 2px 0
 }
  
 button.btn_img {
