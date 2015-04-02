@@ -25,12 +25,13 @@
     - Impossible?
  - Post button spacing broken.
  - Inbox and PM system looks atrocious.
+ - Profile page menu is MASSIVE
 
 */
 
 /* {{{ External fonts */
 
-@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,600italic,700italic,800italic,400,600,700,800|Droid+Sans+Mono);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,700,800,600);
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
@@ -71,27 +72,6 @@ html, body, #top_info small a:after, #top_info > strong > a
 
 .topic h2, #portal h2, #portal_foot h2, thead th
 { font-size: 2em
-}
-
-#pinned_head::before
-{ content: ""
-; display: inline-block
-; width: 1em
-; height: 1em
-; border-right: 0.1em solid #4D4D4D
-; border-bottom: 0.1em solid #4D4D4D
-; margin: 0 1em
-; transform: rotate(55deg) skewY(-20deg)
-; transition: 0.5s all cubic-bezier(.55,0,0.1,1)
-}
-
-tr.pin
-{ display: none
-}
-
-table.posts > tbody > tr:first-child:hover ~ tr.pin,
-table.posts > tbody > tr:first-child:focus ~ tr.pin
-{ display: table-row
 }
 
 }
@@ -180,12 +160,12 @@ html, body
 
 /* {{{ Fonts */
 
-td.c_post, #error_box .generic small:before, html, body, thead th small,
-textarea, h3
+.c_post, #error_box .generic small:before, html, body, thead th small,
+textarea, h3, #profile_menu
 { font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
 }
 
-#logo, td.c_post big, #top, #subhuman, h2, .category h2, .topic h2, #portal h2,
+#logo, .c_post big, #top, #subhuman, h2, .category h2, .topic h2, #portal h2,
 #portal_foot h2, thead th, #copyright, blockquote dl, .notice, .error,
 .spoiler_toggle, th.c_cat-title, th.c_cat-starter, th.c_cat-replies,
 th.c_cat-views, th.c_cat-lastpost, .meta_menu a, .editby, .queued
@@ -197,8 +177,41 @@ code
 }
 
 th.c_cat-title, th.c_cat-starter, th.c_cat-replies, th.c_cat-views,
-th.c_cat-lastpost
+th.c_cat-lastpost, thead > tr > th small
 { font-weight: 400
+}
+
+thead > tr > th small
+{ font-size: 0.4em
+}
+
+#top_info, #top_info > small > a
+{ font-size: 0
+}
+
+ul.cat-topicpages, .c_head, .c_foot, .c_sort
+{ font-size: 0.8em
+}
+
+ul.cat-pages, .meta_box
+{ font-size: 0.9em
+}
+
+td, textarea, #profile_menuwrap, button, .btn_fake, input[type="button"],
+.btn_text, #top
+{ font-size: 1em
+}
+
+h2, h3
+{ font-size: 1.1em
+}
+
+#logo
+{ font-size: 1.5em
+}
+
+h1, #top_bar::before
+{ font-size: 2em
 }
 
 /* }}} */
@@ -245,10 +258,10 @@ input, textarea, select
 [data-desc]:hover::after
 { content: attr(data-desc)
 ; position: absolute
-; background-color: #424242
+; background-color: #03A9F4
 ; color: #F0F0F0
 ; padding: 1em
-; margin: 1em
+; margin: -1em 1em
 }
 
 .topic dl.user_info
@@ -256,7 +269,6 @@ input, textarea, select
 
 #logo
 { text-align: left
-; font-size: 1.5em
 ; color: rgba(50, 50, 50, 0.6)
 ; text-shadow: 0.06em 0.06em 0.09em rgba(255, 255, 255, 0.1)
 ; letter-spacing: 0.1em
@@ -291,19 +303,10 @@ th
 td
 { color: #3D3D3D
 ; padding: 0.5em
-; font-size: 1em
 }
 
 h2, th a, th a:hover
 { color: #4D4D4D
-}
-
-h1
-{ font-size: 2em
-}
-
-h2, h3
-{ font-size: 1.1em
 }
 
 .category h2, .topic h2, #portal h2, #portal_foot h2, thead th
@@ -316,17 +319,15 @@ h2, h3
 { color: #3D3D3D
 }
 
-thead th
+thead > tr > th
 { text-align: center
 ; border-bottom: 3px double #E0E0E0
 /* ↓ Android Chrome is Literally Retarded: The Unwanted Scaling of Fonts */
 ; max-height: 99999px
 }
 
-thead th small
-{ font-size: 0.40em
-; font-weight: 400
-; display: block
+thead > tr > th small
+{ display: block
 ; text-shadow: none
 ; margin-top: 1em
 }
@@ -356,7 +357,6 @@ textarea
 ; border-radius: 0.1em 0.1em
 ; padding: 0.5em
 ; color: #4D4D4D
-; font-size: 1em
 ; width: 100%
 ; transition: 0.5s all ease
 ; box-sizing: border-box
@@ -393,22 +393,20 @@ input[type="checkbox"]:checked
 }
 
 button, a.btn_fake, input[type="button"]
-{ font-size: 1em
-; overflow: visible
+{ overflow: visible
 ; width: auto
 }
 
 button:hover, a.btn_fake:hover, select:hover, option:hover,
-input[type="button"]:hover, td.c_foot a:hover
+input[type="button"]:hover, .c_foot a:hover
 { color: #F0F0F0
 ; background-color: #2D2D2D
 }
 
-button.btn_text {
-background:none;
-border:0;
-cursor:pointer;
-font-size:100%;
+.btn_text
+{ background: none
+; border: 0
+; cursor: pointer
 }
 
 .notice, .error
@@ -446,13 +444,6 @@ font-size:100%;
 .notice a, .error a
 { color: #f0f0f0
 }
- 
-dl.info
-{
-}
- 
-.info dt {
-}
 
 #error_box thead th
 { border: none
@@ -470,7 +461,7 @@ dl.info
 ; margin-bottom: 10pt
 }
 
-#nav,ul.cat-pages,ul.cat-topicpages,table.calendar ul,div.meta_menu ul,
+#nav, ul.cat-pages, ul.cat-topicpages, table.calendar ul, .meta_menu ul,
 #pm_folderlist, #profile_menuwrap ul
 { list-style: none
 ; padding: 0
@@ -502,7 +493,6 @@ dl.info
 { content: "\2261"
 ; position: absolute
 ; padding: 0 0.25em
-; font-size: 2em
 ; top: 0
 ; right: 0
 }
@@ -516,8 +506,7 @@ dl.info
 }
 
 #top
-{ font-size: 1em
-; font-weight: bold
+{ font-weight: bold
 ; display: flex
 ; align-items: flex-start
 ; flex-wrap: nowrap
@@ -547,7 +536,6 @@ dl.info
 
 #top_info
 { color: #f0f0f0
-; font-size: 0
 ; display: flex
 ; align-items: center
 ; align-self: baseline
@@ -556,10 +544,6 @@ dl.info
 #top_info > strong > a
 { margin: 1em 0
 ; display: inline-block
-}
-
-#top_info > small > a
-{ font-size: 0
 }
 
 #top_info a[href$="/login/"]:after, #top_info a[href$="/register/"]:after
@@ -722,12 +706,11 @@ dl.info
 ; transform: rotate(45deg)
 }
 
-.meta_box {
-background:url() repeat-x top #000;
-border:1px solid #333;
-font-size:85%;
-line-height:150%;
-padding:10px 25px;
+.meta_box
+{ background: url() repeat-x top #000
+; border: 1px solid #333
+; line-height: 150%
+; padding: 10px 25px
 }
  
 .meta_menu
@@ -768,7 +751,6 @@ ul li.cat-pageshead
  
 ul.cat-pages
 { float: left
-; font-size: 0.9em
 ; margin: 16px
 ; padding: 8px 4px
 }
@@ -797,22 +779,20 @@ ul.cat-pages
 ; vertical-align: baseline
 }
  
-ul.cat-topicpages {
-float:right;
-font-size:80%;
-padding:1px 0;
+ul.cat-topicpages
+{ float: right
+; padding: 1px 0
 }
  
-tr.generic td,div.generic {
+tr.generic td, .generic {
 font-size:120%;
 font-weight:700;
 padding:20px;
 text-align:center;
 }
  
-td.c_head,td.c_foot,td.c_sort
-{ font-size: 0.8em
-; line-height: 1.8
+.c_head, .c_foot, .c_sort
+{ line-height: 1.8
 ; padding: 0 1em
 }
 
@@ -945,7 +925,11 @@ font-size:80%;
 font-style:italic;
 }
 
-td.c_foot > span
+.c_foot
+{ border-top: 0.3em double #E0E0E0
+}
+
+.c_foot > span
 { display: flex
 ; justify-content: flex-start
 ; flex-wrap: wrap
@@ -953,7 +937,7 @@ td.c_foot > span
 ; float: none
 }
 
-td.c_foot > span > *
+.c_foot > span > *
 { margin: 0.5em 1em
 }
  
@@ -1061,18 +1045,29 @@ margin-bottom:1px;
 }
 
 #profile_menu
-{ font-size: 1em
+{ text-shadow: none
 }
 
-#profile_menu a {
-background:#000;
-border:1px solid #333;
+#profile_menu a
+{ background-color: #455A64
 }
- 
+
 #profile_menu li li a {
 border-top:0;
 }
- 
+
+#profile_menu > li > ul
+{ max-height: 0
+; position: absolute
+; transition: 0.3s max-height cubic-bezier(.55,0,0.1,1)
+}
+
+#profile_menu > li > a:hover + ul, #profile_menu > li > a:focus + ul,
+#profile_menu > li > ul:hover, #profile_menu > li > ul:focus
+{ max-height: 100%
+; transition: 0.3s max-height cubic-bezier(.55,0,0.1,1)
+}
+
 td.c_poll-choice label {
 font-weight:700;
 padding-left:1em;
@@ -1145,13 +1140,13 @@ code
 ; white-space: pre-wrap
 }
  
-div.spoiler
+.spoiler
 { border:1px solid #ccc
 ; border-top:0
 ; padding:5px 7px
 }
  
-div.spoiler_toggle
+.spoiler_toggle
 { border: 0.1em solid #666
 ; color: #f0f0f0
 ; cursor: pointer
@@ -1173,8 +1168,8 @@ td.c_postinfo, td.c_postinfo a
 ; font-weight: 300
 ; vertical-align: middle
 }
- 
-td.c_footicons
+
+.c_footicons
 { margin-bottom: 4px
 ; padding-bottom: 6px
 }
@@ -1216,7 +1211,7 @@ tr.c_postfoot > td
 { padding: 1em
 }
 
-td.c_footicons
+.c_footicons
 { width: 100%
 }
 
@@ -1232,10 +1227,9 @@ td.c_view
 ; padding: 2em 1em
 }
 
-div.c_view-list
+.c_view-list
 { color: #8D8D8D
 ; font-size: 0.9em
-; display: inline-block
 ; line-height: 1.8
 }
 
@@ -1367,7 +1361,7 @@ background:#000;
 border:2px solid #333;
 }
  
-div.portal_content {
+.portal_content {
 background:#000;
 border:1px solid #333;
 font-size:88.3%;
@@ -1519,7 +1513,7 @@ padding:1px 10px;
 }
 
 #copyright:after
-{ content: " “for free” "
+{ content: " \201Cfor free\201D "
 ; float: right
 ; display: block
 ; font-style: italic
@@ -1667,6 +1661,23 @@ tr.postbtn td {
 padding:5px;
 text-align:center;
 }
+
+#announcement_list::before
+{ content: "ANNOUNCEMENTS"
+; transition: 0.5s all cubic-bezier(.55,0,0.1,1)
+}
+
+#announcement_list > tbody
+{ display: none
+}
+
+#announcement_list:hover > tbody, #announcement_list:focus > tbody,
+#announcement_list > tbody:hover, #announcement_list > tbody:focus
+{ display: table-row-group
+}
+
+#announcement_head
+{ display: none }
 
 #pinned_head
 { text-transform: uppercase
@@ -2083,15 +2094,20 @@ button.btn_default,.c_post-attachment dt, #c_tos dt {
 font-weight:700;
 }
 
-td.c_topicfoot
+.c_topicfoot
 { text-transform: uppercase
+; font-size: 1.5em
+}
+
+.c_topicfoot > a
+{ padding: 0 0.5em
 }
 
 .meta_box h3, #meta_welcome strong
 { font-size: 120%
 }
 
-.row2 td,blockquote div {
+.row2 td, blockquote div {
 background:rgba(0,0,0,0.01);
 }
  
@@ -2195,7 +2211,7 @@ display:inline;
 margin:20px 200px 10px 10px;
 }
  
-#blog_categories, #blog_readers, #blog_about,div.blog_options {
+#blog_categories, #blog_readers, #blog_about, .blog_options {
 background:#000;
 margin:15px 0;
 padding:5px 7px;
@@ -2235,12 +2251,12 @@ margin-left:10px;
 font-size:175%;
 }
  
-div.blog_options {
+.blog_options {
 font-size:90%;
 text-align:right;
 }
  
-div.blog_date {
+.blog_date {
 background:#000;
 border:1px solid #333;
 color:#AAAAAA;
@@ -2252,7 +2268,7 @@ text-transform:uppercase;
 width:40px;
 }
  
-div.blog_date span {
+.blog_date span {
 background:#000;
 border-top:1px solid #333;
 color:#AAAAAA;
@@ -2262,7 +2278,7 @@ font-weight:700;
 padding:2px 4px;
 }
  
-div.blog_entry {
+.blog_entry {
 background:#000;
 margin:10px 0;
 padding:5px 7px;
@@ -2330,20 +2346,14 @@ padding:0;
 
 .offline, .hot-new
 { border-color: #B71C1C
-; border-width: 0.2em
-; border-style: solid
 }
 
 .online, .plain-new
 { border-color: #8BC34A
-; border-width: 0.2em
-; border-style: solid
 }
 
 .poll-new
 { border-color: #03A9F4
-; border-width: 0.2em
-; border-style: solid
 }
 
 .bunk-big-butt
