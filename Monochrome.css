@@ -1,7 +1,5 @@
 /* TODO
 
- - Actually fix the god damn topmenu.
-     - Increase vertical padding between options.
  - Put descriptions and other meta-texts UNDER elements, horizontally taking up
    space instead.
      - idk where???
@@ -9,7 +7,6 @@
      - Still.
  - Padding on some buttons not in place.
  - Inconsistent button sizing: padding, margin, border, font-size
- - Emoticon box style.
  - index page text spacing is AWFUL.
  - Hide thread icons, use hidden elements to change the row state and do something interesting.
      - Color the row appropriately.
@@ -32,12 +29,19 @@
     - Address Book
     - Message Tracking
     - Report Panel
+ - Consolidate colours
 
 */
 
 /* {{{ External fonts */
 
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,600italic,700italic,800italic,400,600,700,800|Droid+Sans+Mono);
+
+@font-face {
+    font-name: "fawesome"
+    src: url("/fontawesome-webfont.woff")
+    unicode-range: U+F234, U+F08B
+}
 
 /* }}} */
 
@@ -1557,6 +1561,7 @@ padding:1px 10px;
 #foot_datetime > a
 { white-space: nowrap
 ; font-size: 1.5em
+; text-transform: lowercase
 }
 
 #copyright
