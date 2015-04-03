@@ -18,22 +18,29 @@
      - Color the row appropriately.
          - Separate checkboxes from threads.
              - Note that they are not seen by normal members.
- - No more odd rows!?!?!
  - Fast reply outer border needs to GO. Also generally be modernised. Phones.
     - Make it take up the whole width, minus margin.
  - Hide pinned threads.
     - Impossible?
  - Post button spacing broken.
- - Inbox and PM system looks atrocious.
- - Profile page menu is MASSIVE
+ - Fix pages
+    - Avatar settings
+    - User profile page
+    - Update Profile
+    - Advanced Account Security
+    - Change Photo
+    - My Blog
+    - Inbox
+    - Compose PM
+    - Address Book
+    - Message Tracking
+    - Report Panel
 
 */
 
 /* {{{ External fonts */
 
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,600italic,700italic,800italic,400,600,700,800|Droid+Sans+Mono);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,700,800,600);
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
 /* }}} */
 
@@ -161,11 +168,11 @@ html, body
 /* {{{ FLEX MY MUSCLES */
 
 #edit_sig > tbody, #edit_sig > tbody > tr, #c_post, .c_sig blockquote,
-.c_sig blockquote > dl
+.c_sig blockquote > dl, #c_notes > form
 { display: flex
 }
 
-#c_post, #edit_sig > tbody
+#c_post, #edit_sig > tbody, #c_notes > form
 { flex-direction: column
 }
 
@@ -173,7 +180,13 @@ html, body
 { flex-direction: column-reverse
 }
 
+#c_notes > form
+{ align-items: center
+}
 
+#edit_sig > tbody > tr:last-child, #c_post > button
+{ align-self: center
+}
 
 /* }}} */
 
@@ -262,10 +275,15 @@ a:hover, td.c_post:hover a, td.c_post:focus a
 
 /* }}} */
 
-/* {{{ Max width */
+/* {{{ Odd/even */
 
-input, textarea, select
-{ max-width: 60vw }
+/* Jesus Christ ↓ */
+blockquote blockquote, blockquote blockquote blockquote blockquote,
+blockquote blockquote blockquote blockquote blockquote blockquote,
+blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote,
+blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote
+{ background-color: #E0E0E0
+}
 
 /* }}} */
 
@@ -292,7 +310,6 @@ input, textarea, select
 ; letter-spacing: 0.1em
 ; float: left
 ; padding: 0.5em 1em
-; margin: 0 1em 0 0
 }
 
 #logo > a
@@ -319,7 +336,7 @@ border-color: #000000;
 th
 { background-color: #F0F0F0
 ; color: #4D4D4D
-; padding: 8px 16px
+; padding: 1em 2em
 ; text-align: left
 }
 
@@ -526,6 +543,8 @@ input[type="button"]:hover, .c_foot a:hover
 
 #top_bar:hover + #top > #top_menu, #top_bar:focus + #top > #top_menu
 { right: 0
+; visibility: visible
+; transition: 0.5s right cubic-bezier(.55,0,0.1,1)
 }
 
 #top
@@ -541,8 +560,8 @@ input[type="button"]:hover, .c_foot a:hover
 #top_menu
 { min-height: 100vh
 ; margin-top: 0
-; transition: 0.5s right cubic-bezier(.55,0,0.1,1)
 ; display: flex
+; visibility: hidden
 ; flex-direction: column
 ; position: fixed
 ; top: 0
@@ -550,10 +569,13 @@ input[type="button"]:hover, .c_foot a:hover
 ; z-index: 2
 ; background-color: #455A64
 ; border-left: 0.1em solid #37474F
+; transition: 0.5s right cubic-bezier(.55,0,0.1,1),
+              0.5s visibility 0.5s cubic-bezier(.55,0,0.1,1)
 }
 
 #top_menu:hover, #top_menu:focus
-{ transition: 0.5s max-height cubic-bezier(.55,0,0.1,1)
+{ transition: 0.5s right cubic-bezier(.55,0,0.1,1)
+; visibility: visible
 ; right: 0
 }
 
@@ -562,6 +584,7 @@ input[type="button"]:hover, .c_foot a:hover
 ; display: flex
 ; align-items: center
 ; align-self: baseline
+; margin: 0 0 0 1em
 }
 
 #top_info > strong > a
@@ -819,27 +842,27 @@ text-align:center;
 ; padding: 1em
 }
 
-td.c_desc
+.c_desc
 { font-weight: 700
 ; text-align: right
 ; vertical-align: middle
 ; width: 200px
 }
  
-td.c_desc small {
+.c_desc small {
 display:block;
 font-weight:400;
 }
 
-tr.pm_new td {
+.pm_new > td {
 background:#000;
 font-weight:700;
 }
- 
-tr.hidden td.c_post {
+
+.hidden .c_post {
 background:#000;
 }
- 
+
 .bday {
 background:url(http://z3.ifrm.com/static/1/s_minibday.png) no-repeat;
 color:#AAAAAA;
@@ -1304,11 +1327,10 @@ td.c_view
 }
 
 #c_post-preview
-{ background: #D0D0D0
-; padding: 5px
+{ padding: 5px
 ; margin: 0 auto 1em
-; border: 0.1em solid #CCC
 ; text-align: left
+; width: 100%
 }
  
 #c_post-resize span
@@ -1944,6 +1966,10 @@ text-align:right;
 #c_emot
 { vertical-align: top
 ; width: 180px
+}
+
+#c_bbcode > *
+{ margin: 0 1em 1em 0
 }
 
 #c_bbcode input[name="helpbox"]
