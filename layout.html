@@ -15,10 +15,10 @@
 
 <script>
 
-var qs = Document.prototype.querySelector.bind(document)
-  , ns = qs( "#menu_rcp > a > strong > small"
+var qsa = Document.prototype.querySelectorAll.bind(document)
+  , ns = qsa( "#menu_rcp > a > strong > small"
            + ", #menu_pm > a > strong > small")
-  , topBar = qs("#top_bar")
+  , topBar = qsa("#top_bar")[0]
 
 for (var i = 0, l = ns.length; i < l; i++)
     if (parseInt(ns[i].textContent) > 0)
