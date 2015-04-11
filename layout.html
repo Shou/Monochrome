@@ -14,12 +14,16 @@
 </div>
 
 <script>
-cs=document.querySelectorAll("code");for(var i=0,l=cs.length;i<l;i++){
-cs[i].classList.add("prettyprint")
-la=cs[i].previousElementSibling.children[0].textContent.replace("Code: ","")
-if (la) cs[i].classList.add("lang-"+la)
-}
+
+var qs = Document.prototype.querySelector.bind(document)
+  , ns = qs( "#menu_rcp > a > strong > small"
+           + ", #menu_pm > a > strong > small")
+  , topBar = qs("#top_bar")
+
+for (var i = 0, l = ns.length; i < l; i++)
+    if (parseInt(ns[i].textContent) > 0)
+        topBar.classList.add("glow")
+
 </script>
 
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-
