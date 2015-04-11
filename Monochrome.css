@@ -2,14 +2,15 @@
 
  - Put descriptions and other meta-texts UNDER elements, horizontally taking up
    space instead.
-     - idk where???
- - Padding on some buttons not in place.
+     - Text boxes in various preferences, notably.
  - Inconsistent button sizing: padding, margin, border, font-size
  - Index page text spacing is AWFUL.
  - Fast reply outer border needs to GO. Also generally be modernised. Phones.
     - Make it take up the whole width, minus margin.
  - Hide pinned threads.
     - Impossible?
+        - Use nth-of-type selector to keep ALL pins toggled?
+            - does that work
  - Post button spacing broken.
  - Fix pages
     - Avatar settings
@@ -23,14 +24,26 @@
     - Address Book
     - Message Tracking
     - Report Panel
- - Consolidate colours
+ - Consolidate colour declarations
  - Mobile media height shouldn't affect
     - NO MORE ZOOMING OUT ON TEXT TYPING
     - (orientation: portrait) and (min-WIDTH)
+        - This is broken now.
  - Make most icons CSS-only
  - Mod options spacing broken.
      - Still.
  - How to display PM or RCP updates
+ - Emulate tables with flex
+    - Seriously, tables suck.
+    - Take two.
+    - Use margin/padding/border to control positioning.
+        - Especially text.
+    - Fixed widths on columns to control positioning.
+        - 1em on checkboxes
+        - 2em on icons
+        - etc
+ - big > big > big > et al added to @media for phones
+ - Use dppx instead in @media conditionals
 
 */
 
@@ -58,10 +71,10 @@ html, body, #top_info small a:after, #top_info > strong > a
 }
 
 /* Vertical screens */
-@media (min-height: 1000px) and (max-width: 1000px)
+@media (min-height: 600px) and (max-width: 1000px)
 {
 
-.c_cat-starter
+.c_cat-starter, .c_cat-views
 { display: none
 }
 
@@ -90,7 +103,7 @@ html, body, #top_info small a:after, #top_info > strong > a
 @media (min-width: 1039px)
 {
 
-.c_post, #topic_review td.c_desc + td
+.c_post, #topic_review .c_desc + td
 { max-width: 750px
 }
 
@@ -107,7 +120,7 @@ html, body, #top_info small a:after, #top_info > strong > a
 #wrap
 { margin: 0 0 44px !important }
 
-.c_post, #topic_review td.c_desc + td
+.c_post, #topic_review .c_desc + td
 { max-width: 50vw
 }
 
@@ -304,6 +317,12 @@ a:hover, .c_post:hover a, .c_post:focus a
 
 /* }}} */
 
+/* {{{ Background colors */
+
+
+
+/* }}} */
+
 /* {{{ Odd/even */
 
 /* Jesus Christ ↓ */
@@ -312,6 +331,10 @@ blockquote blockquote blockquote blockquote blockquote blockquote,
 blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote,
 blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote
 { background-color: #E0E0E0
+}
+
+big > big > big > big > big > big > big > big > big > big > big > big > big > big > big
+{ font-size: 154.6pt
 }
 
 /* }}} */
@@ -359,7 +382,6 @@ border-spacing:0;
 clear:both;
 empty-cells:show;
 width:100%;
-border-color: #000000;
 }
 
 th
@@ -741,7 +763,7 @@ input[type="button"]:hover, .c_foot a:hover
 }
 
 #wrap
-{ background: #f0f0f0
+{ background: #E0E0E0
 ; margin: 0 auto 44px
 ; max-width: 1024px
 ; box-shadow: 0 0 0 8px #e0e0e0, 0 0 0 12px #d0d0d0, 0 0 0 16px #c0c0c0
@@ -1159,71 +1181,71 @@ width:15%;
 ; padding-right: 0.5em
 }
 
-.c_poll-bar > div:nth-last-of-type(1)
+.poll > tbody > tr:nth-last-of-type(2) > .c_poll-bar > div
 { background-color: #C62828
 }
 
-.c_poll-bar > div:nth-last-of-type(2)
+.poll > tbody > tr:nth-last-of-type(3) > .c_poll-bar > div
 { background-color: #AD1457
 }
 
-.c_poll-bar > div:nth-last-of-type(3)
+.poll > tbody > tr:nth-last-of-type(4) > .c_poll-bar > div
 { background-color: #6A1B9A
 }
 
-.c_poll-bar > div:nth-last-of-type(4)
+.poll > tbody > tr:nth-last-of-type(5) > .c_poll-bar > div
 { background-color: #4527A0
 }
 
-.c_poll-bar > div:nth-last-of-type(5)
+.poll > tbody > tr:nth-last-of-type(6) > .c_poll-bar > div
 { background-color: #283593
 }
 
-.c_poll-bar > div:nth-last-of-type(6)
+.poll > tbody > tr:nth-last-of-type(7) > .c_poll-bar > div
 { background-color: #1565C0
 }
 
-.c_poll-bar > div:nth-last-of-type(7)
+.poll > tbody > tr:nth-last-of-type(8) > .c_poll-bar > div
 { background-color: #0277BD
 }
 
-.c_poll-bar > div:nth-last-of-type(8)
+.poll > tbody > tr:nth-last-of-type(9) > .c_poll-bar > div
 { background-color: #00838F
 }
 
-.c_poll-bar > div:nth-last-of-type(9)
+.poll > tbody > tr:nth-last-of-type(10) > .c_poll-bar > div
 { background-color: #00695C
 }
 
-.c_poll-bar > div:nth-last-of-type(10)
+.poll > tbody > tr:nth-last-of-type(11) > .c_poll-bar > div
 { background-color: #2E7D32
 }
 
-.c_poll-bar > div:nth-last-of-type(11)
+.poll > tbody > tr:nth-last-of-type(12) > .c_poll-bar > div
 { background-color: #558B2F
 }
 
-.c_poll-bar > div:nth-last-of-type(12)
+.poll > tbody > tr:nth-last-of-type(13) > .c_poll-bar > div
 { background-color: #9E9D24
 }
 
-.c_poll-bar > div:nth-last-of-type(13)
+.poll > tbody > tr:nth-last-of-type(14) > .c_poll-bar > div
 { background-color: #F9A825
 }
 
-.c_poll-bar > div:nth-last-of-type(14)
+.poll > tbody > tr:nth-last-of-type(15) > .c_poll-bar > div
 { background-color: #FF8F00
 }
 
-.c_poll-bar > div:nth-last-of-type(15)
+.poll > tbody > tr:nth-last-of-type(16) > .c_poll-bar > div
 { background-color: #EF6C00
 }
 
-.c_poll-bar > div:nth-last-of-type(16)
+.poll > tbody > tr:nth-last-of-type(17) > .c_poll-bar > div
 { background-color: #D84315
 }
 
-.c_poll-bar > div:nth-last-of-type(n+16)
+.poll > tbody > tr:nth-last-of-type(n+17) > .c_poll-bar > div
 { background-color: #424242
 }
  
@@ -1610,12 +1632,6 @@ padding:1px 10px;
 #pmclose:hover
 { color: #AAAAAA
 }
- 
-#foot_wrap
-{ margin: 2em 0 0 0
-; background-color: #E0E0E0
-; border-top: 0.1em solid #D0D0D0
-}
 
 #foot tr
 { padding: 0 1em
@@ -1703,12 +1719,6 @@ a img {
 border:0;
 }
 
-form {
-display:inline;
-margin:0;
-padding:0;
-}
- 
 .category h2,.topic h2,#portal h2
 { padding: 0.1em 0.5em
 ; text-align: left
@@ -1721,23 +1731,39 @@ padding:3px 0;
 select
 { vertical-align: middle
 }
- 
-button.btn_img {
+
+.btn_img {
 border:0;
 cursor:pointer;
 padding:0;
 }
- 
+
 .drop_menu a img {
 vertical-align: bottom
 }
 
-.drop_menu li.hover ul {
+.drop_menu .hover ul {
 left:auto;
 }
- 
-#main
-{ padding: 32px 0 0 0
+
+#main > *,
+#main > table > thead,
+#main > table > tbody > tr
+{ background-color: #F0F0F0
+; padding-top: 1em
+; padding-bottom: 1em
+}
+
+#main > table
+{ background-color: #E0E0E0
+}
+
+#main > *:last-child,
+#main > table > thead,
+#topic_viewer > tbody > tr:nth-of-type(1+5n),
+.row1, .row2
+{ margin-bottom: 1em
+; border-bottom: 0.2em solid #D0D0D0
 }
 
 #main > table:first-child
@@ -1750,36 +1776,37 @@ left:auto;
 ; max-width: 90vw
 ; overflow: hidden
 }
- 
+
 #nav li img {
 vertical-align:top;
 }
- 
+
 .meta_box,.meta_menu {
 margin:10px 0;
 }
- 
+
 .meta_box li {
 display:list-item;
 list-style-position:inside;
 list-style-type:square;
 margin-left:10px;
 }
- 
+
 .cat-pages a,.cat-pagesjump i,.cat-topicpages a
 { cursor: pointer
 ; padding: 4px 8px
 }
- 
+
 .cat-topicpages a {
 padding:0 2px;
 }
- 
+
 .cat-buttons, .topic-buttons
-{ margin: 15px
+{ padding: 2em
 ; text-align: right
+; background-color: #F0F0F0
 }
- 
+
 tr.postbtn td {
 padding:5px;
 text-align:center;
@@ -1830,16 +1857,16 @@ width:30%;
 { line-height: 1.2
 }
 
-td.c_cat-mark, td.c_cat-icon, td.c_cat-replies
+.c_cat-mark, .c_cat-icon, .c_cat-replies
 { text-align: center
-; width: 1%
+; width: 10%
 }
 
-td.c_cat-title
+.c_cat-title
 { width: 25%
 }
 
-td.c_cat-starter
+.c_cat-starter
 { width: 15%
 }
 
@@ -1847,7 +1874,7 @@ td.c_cat-starter
 { width: 25%
 }
 
-td.c_cat-lastpost > *
+.c_cat-lastpost > *
 { font-size: 1em }
 
 .c_post
@@ -1856,8 +1883,8 @@ td.c_cat-lastpost > *
 ; max-height: 999999px
 }
 
-.c_sig, .c_nosig {
-width:100%;
+.c_sig, .c_nosig
+{ width: 100%
 }
  
 .avatar {
@@ -1971,13 +1998,10 @@ margin-left:10px;
 ; display: none
 }
 
-.c_sig, .c_nosig
+.c_sig
 { vertical-align: top
 ; background-color: #E0E0E0
-}
-
-.c_nosig {
-border-top-style:hidden!important;
+; border-top: 0.1em solid #D0D0D0
 }
 
 blockquote dl dt,blockquote dl dd {
@@ -2237,10 +2261,6 @@ font-weight:700;
 { font-size: 120%
 }
 
-.row2 td
-{ background: rgba(0,0,0,0.01)
-}
-
 a.member, .calendar td a, .calendar a:hover, #faq dd a, #faq dd a:hover
 { color: #4D4D4D
 }
@@ -2250,7 +2270,7 @@ img,.meta_box button img,td.c_cat-mark input, .c_post-attachment img,.warn img,
 vertical-align:middle;
 }
  
-h1, h2, h3, #nav, #boardmeta, #main {
+h1, h2, h3, #nav, #boardmeta {
 clear:both;
 margin:0;
 }
@@ -2265,10 +2285,6 @@ line-height:2;
  
 .c_cat-starter,.c_cat-replies,.c_cat-views,td.c_poll-total,td.c_poll-vote,td.c_topicfoot,.warn,.ucp th, #c_notes,.calendar th {
 text-align:center;
-}
-
-.c_cat-views
-{ display: none
 }
  
 blockquote dl dd, #foot #foot_links {
@@ -2474,16 +2490,24 @@ padding:0;
 ; background-color: #2d2d2d
 }
 
-.offline, .hot-new
+.offline
 { border-color: #B71C1C
 }
 
-.online, .plain-new
+.hot-new
+{ color: #B71C1C
+}
+
+.online
 { border-color: #8BC34A
 }
 
+.plain-new
+{ color: #8BC34A
+}
+
 .poll-new
-{ border-color: #03A9F4
+{ color: #03A9F4
 }
 
 .bunk-big-butt
@@ -2530,3 +2554,24 @@ padding:0;
 img[src=""]
 { display: none
 }
+
+.plain::after, .plain-new::after
+{ content: "\f0fe"
+}
+
+.hot::after, .hot-new::after
+{ content: "\f06d"
+}
+
+.poll::after, .poll-new::after
+{ content: "\f080"
+}
+
+.folder
+{ font-size: 1.5em
+}
+
+.fa
+{ font-family: "FontAwesome"
+}
+
