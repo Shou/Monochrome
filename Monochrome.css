@@ -47,63 +47,60 @@
         - 2em on icons
         - etc
  - big > big > big > et al added to @media for phones
+    - Isn't this global? Why do I need to do this?
  - Use dppx instead in @media conditionals
- - Custom checkboxes using parent elements
-    - td:first-of-type
- - Deal with `nonexistent' elements.
+    - Is dppx truly better?
  - Use `rem' instead of em
+ - Make background dark blue/royal blue.
+ - pmtoast
+ - Evauluate possibly obsolete declerations, search /XXX REM
 
 */
 
 /* {{{ External fonts */
 
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,600italic,700italic,800italic,400,600,700,800|Droid+Sans+Mono);
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css)
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css);
 
 /* }}} */
 
 /* {{{ Media rules */
 
 /* Mobile devices, super high res screens */
-@media (orientation: portrait) and (min-width: 900px)
+@media only screen and (min-resolution: 2dppx)
 {
 
 html, body
-{ font-size: 24pt
-}
+{ font-size: 24pt }
 
+/* XXX REM is this even needed anymore? */
 .drop_menu > li a img
-{ height: 40pt
-}
+{ height: 40pt }
 
 }
 
 /* Vertical screens */
-@media (min-height: 600px) and (max-width: 1000px)
+@media (max-device-height: 1200px) and (max-width: 1000px)
 {
 
-.c_cat-starter, .c_cat-views
-{ display: none
-}
+.c_cat-starter
+{ display: none }
 
 .topic h2, #portal h2, #portal_foot h2, thead th
-{ font-size: 2em
-}
+{ font-size: 2em }
 
 }
 
 /* Small screens */
-@media (orientation: landscape) and (max-width: 1700px)
+@media only screen and (max-resolution: 1.9dppx)
 {
 
 html, body
-{ font-size: 10pt
-}
+{ font-size: 10pt }
 
 
 .topic h2, #portal h2, #portal_foot h2, thead th
-{ font-size: 2.5em
-}
+{ font-size: 2.5em }
 
 }
 
@@ -112,8 +109,7 @@ html, body
 {
 
 .c_post, #topic_review .c_desc + td
-{ max-width: 750px
-}
+{ max-width: 750px }
 
 .c_post img, #topic_review img, .c_post video, .c_post object, .c_post audio,
 .c_post iframe
@@ -129,8 +125,7 @@ html, body
 { margin: 0 0 44px !important }
 
 .c_post, #topic_review .c_desc + td
-{ max-width: 50vw
-}
+{ max-width: 50vw }
 
 .c_post img, #topic_review img, .c_post video, .c_post object, .c_post audio,
 .c_post iframe
@@ -178,7 +173,7 @@ html, body
 .c_sig blockquote > dl, #c_notes > form, #foot > tbody > tr, #acplogin,
 #acplogin table, #acplogin thead, #acplogin tbody, #acplogin tr, #acplogin th,
 #acplogin tr td:last-child, #acplogin #loginform, #realtop, #top, #top_menu,
-#top_info, .drop_menu > li, #submenu, .c_foot > span, #boardmeta
+#top_info, .drop_menu > li, #submenu, .c_foot > span, #boardmeta, .cat-title
 { display: flex
 }
 
@@ -219,7 +214,7 @@ html, body
 { align-self: baseline
 }
 
-#realtop, #submenu, .c_foot > span
+#realtop, #submenu, .c_foot > span, .cat-title
 { flex-wrap: wrap
 }
 
@@ -257,6 +252,10 @@ code
 
 .c_post-attachment > dd > a::before, .c_post a::after
 { font-family: "FontAwesome"
+}
+
+.c_cat-views
+{ font-family: "FontAwesome", "Open Sans"
 }
 
 th.c_cat-title, th.c_cat-starter, th.c_cat-replies, th.c_cat-views,
@@ -299,6 +298,10 @@ h2, h3
 
 h1, #top_bar::before
 { font-size: 2em
+}
+
+.c_cat-views
+{ white-space: pre-line
 }
 
 /* }}} */
@@ -364,18 +367,21 @@ big > big > big > big > big > big > big > big > big > big > big > big > big > bi
 }
 
 [data-desc]:hover::after,
+{ content: attr(data-desc)
+}
+
+[data-desc]:hover::after,
 #top_info a[href$="/multi_login/"]:hover::after
 #top_info a[href$="/multi_login/"]:focus::after
 #top_info a[href$="/logout/"]:hover::after
 #top_info a[href$="/logout/"]:focus::after
-{ content: attr(data-desc)
-; display: block
+{ display: block
 ; position: absolute
 ; background-color: #03A9F4
 ; color: #F0F0F0
 ; border: 0.1rem solid #ededed
-; padding: 1rem
-; margin: -1rem 1rem
+; padding: 0.5rem 1rem
+; margin: -2rem 2rem
 ; font-size: 1rem
 }
 
@@ -409,7 +415,6 @@ table, thead, tbody
 
 tr
 { display: flex
-; flex-wrap: wrap
 }
 
 thead > tr
@@ -420,6 +425,11 @@ tr > *
 { min-width: 0
 }
 
+thead
+{ margin-bottom: 2em
+; border-bottom: 0.2em solid #D0D0D0
+}
+
 th
 { background-color: #F0F0F0
 ; color: #4D4D4D
@@ -427,9 +437,13 @@ th
 ; text-align: left
 }
 
+th[colspan]
+{ width: 100%
+}
+
 td
 { color: #3D3D3D
-; padding: 0.5em
+; padding: 0 0.5em
 }
 
 h2, th a, th a:hover
@@ -463,11 +477,11 @@ h2.special
 
 input, select, button, a.btn_fake, td.c_foot a
 { background: #F0F0F0
-; border-bottom: 0.2em solid #2D2D2D
+; border-bottom: 0.2em solid #3D3D3D
 ; border-top: 0 solid
 ; border-left: 0 solid
 ; border-right: 0 solid
-; color: #2D2D2D
+; color: #3D3D3D
 ; padding: 0.3em 0.5em 0.1em 0.5em
 ; margin: 0 0.5em
 ; vertical-align: middle
@@ -501,7 +515,7 @@ input:focus, input.focus
 }
 
 input[type="text"], input[type="password"], input:not([type])
-{ border-left: 2px solid #2D2D2D
+{ border-left: 2px solid #3D3D3D
 ; border-top: 1px solid #D0D0D0
 ; border-bottom: 1px solid #D0D0D0
 ; border-right: 1px solid #D0D0D0
@@ -530,7 +544,7 @@ button, a.btn_fake, input[type="button"]
 button:hover, a.btn_fake:hover, select:hover, option:hover,
 input[type="button"]:hover, .c_foot a:hover
 { color: #F0F0F0
-; background-color: #2D2D2D
+; background-color: #3D3D3D
 }
 
 .btn_text
@@ -591,7 +605,7 @@ input[type="button"]:hover, .c_foot a:hover
 ; margin-bottom: 10pt
 }
 
-#nav, ul.cat-pages, ul.cat-topicpages, .calendar ul, .meta_menu ul,
+#nav, ul.cat-pages, .cat-topicpages, .calendar ul, .meta_menu ul,
 #pm_folderlist, #profile_menuwrap ul
 { list-style: none
 ; padding: 0
@@ -602,11 +616,11 @@ input[type="button"]:hover, .c_foot a:hover
 ; padding: 0
 }
  
-#profile_menuwrap ul,ul.cat-topicpages,blockquote dl, #fast-reply dd
+#profile_menuwrap ul, .cat-topicpages,blockquote dl, #fast-reply dd
 { margin:0
 }
  
-#nav li,ul.cat-pages li,ul.cat-topicpages li,.calendar li,
+#nav li,ul.cat-pages li, .cat-topicpages li,.calendar li,
 #pm_folderlist li, #profile_menuwrap li, #ucp_gallery li
 { display: inline }
 
@@ -915,12 +929,7 @@ ul.cat-pages
 ; padding: 3px 5px
 ; vertical-align: baseline
 }
- 
-ul.cat-topicpages
-{ float: right
-; padding: 1px 0
-}
- 
+
 tr.generic td, .generic {
 font-size:120%;
 font-weight:700;
@@ -930,7 +939,11 @@ text-align:center;
  
 .c_head, .c_foot, .c_sort
 { line-height: 1.8
+; width: 100%
 ; padding: 1em
+; display: flex
+; justify-content: space-between
+; flex-wrap: wrap
 }
 
 .c_desc
@@ -1061,10 +1074,6 @@ font-size:80%;
 font-style:italic;
 }
 
-.c_foot
-{ border-top: 0.5em solid #E0E0E0
-}
-
 .c_foot > span
 { float: none
 }
@@ -1085,11 +1094,17 @@ border-color:#333;
 .description
 { color: #8D8D8D
 ; font-size: 0.85em
+; order: 4
 }
 
 #stats_events a, #stats_events span {
 background:url() no-repeat 2px;
 padding:4px 0 4px 20px;
+}
+
+#topic_viewer > tbody > tr
+{
+; background-color: #F0F0F0
 }
 
 #topic_viewer th:first-child > span
@@ -1102,13 +1117,14 @@ padding:4px 0 4px 20px;
 { display: table-cell
 }
 
-td.c_username
+.c_username
 { padding: 2px 0
 ; text-align: center
-; width: 175px
+; min-width: 192px
+; max-width: 192px
 }
 
-td.c_username a
+.c_username a
 { font-size: 1.1em
 ; font-weight: 400
 }
@@ -1120,7 +1136,7 @@ td.c_username a
 ; vertical-align: top
 }
 
-td.c_user
+.c_user
 { font-size: 0.8em
 ; min-width: 192px
 ; max-width: 192px
@@ -1129,7 +1145,7 @@ td.c_user
 ; text-overflow: ellipsis
 }
 
-td.c_user div:first-child
+.c_user > div:first-child
 { border-radius: 50%
 ; border: 5px solid #F0F0F0
 ; box-shadow: 0 0 0 5px #4D4D4D
@@ -1290,10 +1306,8 @@ width:15%;
 ; font-weight: 300
 ; text-align: right
 ; margin-top: 1em
-; margin-left: -182px
 ; margin-right: 1em
 ; padding: 0.7em 1em
-; background-color: #E0E0E0
 }
 
 .editby strong
@@ -1345,7 +1359,7 @@ code
 ; background-color: #3d3d3d
 }
 
-td.c_username, .c_postinfo
+.c_username, .c_postinfo
 { padding: 1.5em 1em 1em
 }
 
@@ -1356,7 +1370,7 @@ td.c_username, .c_postinfo
 .c_postinfo, .c_postinfo a
 { color: #4D4D4D
 ; font-weight: 300
-; vertical-align: middle
+; display: flex
 }
 
 .c_footicons
@@ -1414,12 +1428,18 @@ td.c_username, .c_postinfo
 { margin: 1em
 }
 
-tr.c_postfoot
-{ border-bottom: 0.5em solid #E0E0E0
+.c_postfoot
+{ margin-bottom: 2em
+; border-bottom: 0.2em solid #D0D0D0
 }
 
-tr.c_postfoot > td
+.c_postfoot > td
 { padding: 1em
+}
+
+.c_postfoot > td:first-of-type
+{ max-width: 192px
+; min-width: 192px
 }
 
 .c_footicons
@@ -1599,25 +1619,25 @@ padding:5px 7px;
 { margin-bottom: 1em
 ; padding: 0.5em 1em
 }
- 
+
 .search_results h3 {
 display:inline;
 font-size:125%;
 }
- 
+
 .search_results cite,.search_results p {
 color:#AAAAAA;
 font-size:85%;
 margin:0;
 }
- 
+
 #findposts .c_mark {
 color:#AAAAAA;
 font-size:200%;
 font-weight:700;
 vertical-align:top;
 }
- 
+
 #pmtoast {
 background:#000;
 border:2px solid #333;
@@ -1632,11 +1652,11 @@ text-decoration:none;
 width:200px;
 z-index:1;
 }
- 
+
 #pmtoast:hover {
 border-color:#333;
 }
- 
+
 #pmlink {
 background:url(http://z3.ifrm.com/static/1/toast.png) no-repeat 5px;
 color:#AAAAAA;
@@ -1683,6 +1703,12 @@ padding:1px 10px;
 { color: #4D4D4D
 }
 
+#foot_themechooser > form
+{ display: flex
+; flex-wrap: wrap
+; justify-content: center
+}
+
 #foot_datetime > a
 { white-space: nowrap
 ; font-size: 1.5em
@@ -1722,7 +1748,7 @@ color:#AAAAAA;
 font-size:120%;
 }
  
-td.username_ok {
+.username_ok {
 background:#000;
 }
  
@@ -1785,32 +1811,25 @@ vertical-align: bottom
 left:auto;
 }
 
-nonexistent#main > *,
-nonexistent#main > table > thead,
-nonexistent#main > table > tbody > tr
-{ background-color: #F0F0F0
-; padding-top: 1em
-; padding-bottom: 1em
-}
-
-nonexistent#main > table
-{ background-color: #E0E0E0
-}
-
-nonexistent#main > *:last-child,
-nonexistent#main > table > thead,
-nonexistent#topic_viewer > tbody > tr:nth-of-type(1+5n),
-nonexistent.row1, nonexistent.row2
-{ margin-bottom: 1em
-; border-bottom: 0.2em solid #D0D0D0
-}
-
 #main > table:first-child
 { height: auto !important
 ; margin: 0 !important
 }
 
-#main > table iframe, form.exclusivebutton + table td > div
+.exclusivebutton + table > tbody > tr:first-child > td,
+#main > table:first-child td
+{ display: flex
+; justify-content: center
+; width: 100%
+; background-color: #F0F0F0
+; padding: 0
+}
+
+.exclusivebutton + table
+{ background-color: #F0F0F0
+}
+
+#main > table iframe, .exclusivebutton + table td > div
 { margin: 1em auto
 ; max-width: 90vw
 ; overflow: hidden
@@ -1838,6 +1857,10 @@ margin-left:10px;
 
 .cat-topicpages a {
 padding:0 2px;
+}
+
+.cat-buttons:last-of-type
+{ border-bottom: 0.2em solid #D0D0D0
 }
 
 .cat-buttons, .topic-buttons
@@ -1868,16 +1891,27 @@ text-align:center;
 #announcement_head
 { display: none }
 
-#pinned_head
-{ text-transform: uppercase
+#inlinetopic > .posts > tbody > tr:first-child:not([class])
+{ display: none
 }
 
-td.c_desc img,td.c_desc input {
+.pin + tr:not([class])
+{ display: none
+}
+
+#inlinetopic > .posts > tbody > tr
+{ background-color: #F0F0F0
+; margin-bottom: 1em
+; border-bottom: 0.2em solid #D0D0D0
+; padding: 1em 0
+}
+
+.c_desc img, .c_desc input {
 float:left;
 vertical-align:middle;
 }
 
-span.collapse,span.uncollapse
+.collapse, .uncollapse
 { display: none
 }
  
@@ -1896,6 +1930,15 @@ width:30%;
 { line-height: 1.2
 }
 
+.c_cat-mark
+{ display: flex
+; align-items: center
+}
+
+td.c_cat-mark + td.c_cat-mark
+{ min-width: 4em
+}
+
 .c_cat-mark, .c_cat-icon, .c_cat-replies
 { text-align: center
 ; min-width: 3em
@@ -1904,6 +1947,20 @@ width:30%;
 
 .c_cat-title
 { max-width: 40%
+; font-size: 0
+}
+
+.c_cat-title > a
+{ font-size: 1.2rem
+; order: 1
+}
+
+.c_cat-title > ul
+{ order: 2
+}
+
+.c_cat-title > span, .c_cat-title > div, .c_cat-title > ul
+{ font-size: 1rem
 }
 
 .c_cat-starter
@@ -1914,10 +1971,17 @@ width:30%;
 { width: 20%
 }
 
+.c_cat-title, .c_cat-starter, .c_cat-lastpost
+{ overflow: hidden
+; text-overflow: ellipsis
+; white-space: nowrap
+}
+
 .c_post
 { padding: 0.5em
 /* ↓ Android Chrome is Literally Retarded: The Unwanted Scaling of Fonts */
 ; max-height: 999999px
+; width: 100%
 }
 
 .c_sig, .c_nosig
@@ -2018,9 +2082,10 @@ margin-left:10px;
 { content: "\F15B\A0"
 }
 
-.c_post-attachment > dd > a, .c_post-attachment > dd > a:hover,
-.c_post-attachment > dd > a:focus
-{ color: #f0f0f0
+.c_post > .c_post-attachment > dd > a,
+.c_post > .c_post-attachment > dd > a:hover,
+.c_post > .c_post-attachment > dd > a:focus
+{ color: #F0F0F0
 }
 
 .c_post-attachment dt
@@ -2037,8 +2102,11 @@ margin-left:10px;
 
 .c_sig
 { vertical-align: top
-; background-color: #E0E0E0
+; margin-left: 192px
+
+; background-color: #EAEAEA
 ; border-top: 0.1em solid #D0D0D0
+; border-left: 0.1em solid #E0E0E0
 }
 
 blockquote dl dt,blockquote dl dd {
@@ -2288,6 +2356,10 @@ font-weight:700;
 .c_topicfoot
 { text-transform: uppercase
 ; font-size: 1.5em
+; display: flex
+; flex-wrap: wrap
+; justify-content: center
+; width: 100%
 }
 
 .c_topicfoot > a
@@ -2548,25 +2620,25 @@ padding:0;
 }
 
 .bunk-big-butt
-{ border-bottom: 3px solid #2D2D2D
+{ border-bottom: 3px solid #4D4D4D
 ; font-size: 1.6em
 ; padding: 0.1em 0.5em
 ; margin: 0 1em
-; color: #2D2D2D
+; color: #4D4D4D
 ; transition: 0.3s all cubic-bezier(.55,0,0.1,1)
 }
 
 .bunk-big-butt:hover
 { color: #F0F0F0
-; background-color: #2D2D2D
+; background-color: #4D4D4D
 }
 
 .usertitle img
 { display: none }
 
 .replied-marker
-{ vertical-align: super
-; font-size: 0.5em
+{ order: 3
+; width: 100%
 }
 
 #subslider
@@ -2592,6 +2664,10 @@ img[src=""]
 { display: none
 }
 
+.pin .plain::after, .pin .plain-new::after
+{ content: "\f08d"
+}
+
 .plain::after, .plain-new::after
 { content: "\f0fe"
 }
@@ -2609,7 +2685,7 @@ img[src=""]
 }
 
 .folder
-{ font-size: 1.5em
+{ font-size: 2em
 }
 
 .fa
