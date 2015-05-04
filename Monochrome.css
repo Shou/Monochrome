@@ -178,6 +178,10 @@ html, body
 { display: flex
 }
 
+.forums
+{ display: flex !important
+}
+
 #c_post, #edit_sig > tbody, #c_notes > form, #acplogin, #acplogin table,
 #acplogin thead, #acplogin tbody, #top_menu, .drop_menu > li
 { flex-direction: column
@@ -191,7 +195,7 @@ html, body
 { justify-content: flex-start
 }
 
-#foot > tbody > tr, #realtop, #top, .c_postinfo, .c_footicons
+#foot > tbody > tr, #realtop, #top, .c_postinfo, .c_footicons, .c_cat-title
 { justify-content: space-between
 }
 
@@ -207,7 +211,8 @@ html, body
 { align-items: flex-start
 }
 
-#edit_sig > tbody > tr:last-child, #c_post > button
+#edit_sig > tbody > tr:last-child, #c_post > button, .c_cat-replies,
+.c_cat-views, .c_cat-starter
 { align-self: center
 }
 
@@ -251,7 +256,8 @@ code
 { font-family: "Droid Sans Mono", monospace
 }
 
-.c_post-attachment > dd > a::before, .c_post a::after
+.c_post-attachment > dd > a::before, .c_post a::after, .collapse::before,
+.uncollapse::before
 { font-family: "FontAwesome"
 }
 
@@ -324,7 +330,7 @@ h1, #top_bar::before
 /* {{{ Links */
 
 a
-{ color: #2D2D2D
+{ color: #3D3D3D
 ; text-decoration: none
 }
 
@@ -451,14 +457,20 @@ h2, th a, th a:hover
 { color: #4D4D4D
 }
 
-.category h2, .topic h2, #portal h2, #portal_foot h2, thead th
+.topic h2, #portal h2, #portal_foot h2, thead th
 { font-weight: normal
 ; text-shadow: -0.04em 0.04em 0 #D0D0D0
 ; color: #3D3D3D
 }
 
-.category h2 a
-{ color: #3D3D3D
+.category h2
+{ padding: 0 1em 0 0
+; background-color: #3D3D3D
+; font-weight: 300
+}
+
+.category h2 > a, .category h2
+{ color: #F0F0F0
 }
 
 thead > tr > th
@@ -472,9 +484,6 @@ thead > tr > th small
 ; text-shadow: none
 ; margin-top: 1em
 }
-
-h2.special
-{ border-color: #333333 }
 
 input, select, button, a.btn_fake, td.c_foot a
 { background: #F0F0F0
@@ -978,19 +987,17 @@ width:20px;
 }
 
 .category
-{ margin: 0 1em
+{ margin: 2em 0
 }
 
-.forums, .forums tbody
-{ display: block
+.forums[style*="display: none"]
+{ display: none !important
 }
 
-.forums td
-{ display: inline-block
-}
-
-.forums tbody > tr
-{ display: flex
+.forums
+{ padding: 1em
+; background-color: #F0F0F0
+; border-bottom: 0.2em solid #D0D0D0
 }
 
 .forum
@@ -1018,7 +1025,7 @@ width:20px;
 }
 
 .c_forum
-{ flex: 2
+{ width: 50%
 }
 
 .c_forum, .c_info
@@ -1026,7 +1033,7 @@ width:20px;
 }
 
 .c_forum strong a,.c_last strong a
-{ color: #2D2D2D
+{ color: #3D3D3D
 }
 
 .c_forum strong a
@@ -1782,11 +1789,11 @@ a img {
 border:0;
 }
 
-.category h2,.topic h2,#portal h2
+.topic h2,#portal h2
 { padding: 0.1em 0.5em
 ; text-align: left
 }
- 
+
 h3 {
 padding:3px 0;
 }
@@ -1909,10 +1916,28 @@ float:left;
 vertical-align:middle;
 }
 
-.collapse, .uncollapse
-{ display: none
+.collapse::before, .uncollapse::before
+{ cursor: pointer
+; padding: 0.5em 1em
+; display: inline-block
 }
- 
+
+.collapse::before
+{ content: "\f107"
+}
+
+.uncollapse::before
+{ content: "\f106"
+}
+
+.uncollapse > a
+{ display: inline-block
+; position: absolute
+; width: 3em
+; height: 2em
+; margin-left: -3em
+}
+
 .c_mark img {
 display:block;
 margin:auto;
@@ -1963,10 +1988,6 @@ td.c_cat-mark + td.c_cat-mark
 
 .c_cat-starter
 { width: 15%
-}
-
-.c_cat-lastpost
-{ width: 20%
 }
 
 .c_cat-title, .c_cat-starter, .c_cat-lastpost
