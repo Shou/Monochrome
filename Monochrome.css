@@ -173,7 +173,7 @@ html, body
 .c_sig blockquote > dl, #c_notes > form, #foot > tbody > tr, #acplogin,
 #acplogin table, #acplogin thead, #acplogin tbody, #acplogin tr, #acplogin th,
 #acplogin tr td:last-child, #acplogin #loginform, #realtop, #top, #top_menu,
-#top_info, .drop_menu > li, #submenu, .c_foot > span, #boardmeta, .cat-title
+#top_info, .drop_menu > li, #submenu, .c_foot > span, #boardmeta, .c_cat-title
 { display: flex
 }
 
@@ -214,7 +214,7 @@ html, body
 { align-self: baseline
 }
 
-#realtop, #submenu, .c_foot > span, .cat-title
+#realtop, #submenu, .c_foot > span, .c_cat-title
 { flex-wrap: wrap
 }
 
@@ -1952,7 +1952,7 @@ td.c_cat-mark + td.c_cat-mark
 
 .c_cat-title > a
 { font-size: 1.2rem
-; order: 1
+; order: -1
 }
 
 .c_cat-title > ul
@@ -2664,23 +2664,23 @@ img[src=""]
 { display: none
 }
 
-.pin .plain::after, .pin .plain-new::after
+.pin .plain::before, .pin .plain-new::before
 { content: "\f08d"
 }
 
-.plain::after, .plain-new::after
+.plain::before, .plain-new::before
 { content: "\f0fe"
 }
 
-.hot::after, .hot-new::after
+.hot::before, .hot-new::before
 { content: "\f06d"
 }
 
-.poll::after, .poll-new::after
+.poll::before, .poll-new::before
 { content: "\f080"
 }
 
-.locked::after
+.locked::before
 { content: "\f023"
 }
 
