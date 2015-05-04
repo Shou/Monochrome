@@ -14,16 +14,18 @@ Scroll down for the raw juice.
 * Material design for that modern aesthetic
 * Smooth animations and smart transitions
 * Beautiful fonts for your delicate eyes
+* Hamburger hamburger hamburger menu
 * Small and meaningful color usage
 * Quirky hipster rounded avatars
+* Literally Awesome font icons
 * Enough minimalist spacing
 * Staircase bullet lists
 
 ## Screenshots
 
-<img src="http://i.imgur.com/PVCHd9y.png" />
-<img src="http://i.imgur.com/yGkcloD.png" />
-<img src="http://i.imgur.com/OPoiTJ0.jpg" />
+<img src="http://i.imgur.com/TIv5cvN.png" />
+<img src="http://i.imgur.com/1Btm6Yq.png" />
+<img src="http://i.imgur.com/Nr1MfK3.png" />
 
 ## Installing
 
