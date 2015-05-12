@@ -1,10 +1,9 @@
 
 With the creeping extinction of modern web design on Zetaboards, I've
 sacrificed my soul, sleep, and virginity to engender this responsive and
-material theme. Stand up and enamour this theme with an explosive ovation
-before the theme's basis contemporary fad ends and my sweaty work has been
-pointless (just like it all), and the theme joins ranks with its current
-abhorrent antitheses.
+material theme. Stand up and enamour with an explosive ovation before the
+theme's basis contemporary fad ends and my sweaty work has been pointless (just
+like it all), and the theme joins ranks with its current abhorrent antitheses.
 
 Scroll down for the raw juice.
 
@@ -13,8 +12,8 @@ Scroll down for the raw juice.
 * Responsive design for your handy mobile devices
 * Material design for that modern aesthetic
 * Smooth animations and smart transitions
-* Beautiful fonts for your delicate eyes
 * Hamburger hamburger hamburger menu
+* Beautiful fonts for your delicate eyes
 * Small and meaningful color usage
 * Quirky hipster rounded avatars
 * Literally Awesome font icons
