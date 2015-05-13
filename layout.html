@@ -9,7 +9,7 @@ function views(vs) {
         var ss = s.split("<br>")
         var cs = ss[0].split(/,/g)
         var v = cs[0].trim() + fs[cs.length - 1]
-        var w = ss[1] ? "\n\uf06e " + ss[1].split(' ')[0] : ""
+        var w = ss[1] ? "\a0\uf00d " + ss[1].split(' ')[0] : ""
 
         return v + w
     }

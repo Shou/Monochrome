@@ -22,20 +22,18 @@
     - Address Book
     - Message Tracking
     - Report Panel
+    - Calendar (mobile)
  - Consolidate colour declarations
  - Mod options spacing broken.
      - Still.
  - How to display PM or RCP updates
  - big > big > big > et al added to @media for phones
     - Isn't this global? Why do I need to do this?
- - Use dppx instead in @media conditionals
-    - Is dppx truly better?
- - Use `rem' instead of em
  - Make background dark blue/royal blue.
- - pmtoast
+ - pmtoast (pm popup)
  - Evauluate possibly obsolete declerations, search /XXX REM
  - Fix topics section spacing
-        - Use flex-wrap: nowrap and wrap to control "last post by"s width
+    - Use flex-wrap: nowrap and wrap to control "last post by"s width
 
 */
 
@@ -55,24 +53,20 @@
 html, body
 { font-size: 24pt }
 
-/* XXX REM is this even needed anymore? */
-.drop_menu > li a img
-{ height: 40pt }
+.topic h2, #portal h2, #portal_foot h2, thead th
+{ font-size: 2em }
+
+.topic .user_info > dd:first-of-type
+{ font-size: 1em }
+
+.c_user > .usertitle
+{ font-size: 0.8em }
 
 }
 
 /* Vertical screens */
 @media (min-device-height: 1200px) and (max-width: 1200px)
 {
-
-.c_cat-title
-{ min-width: calc(100% - 8rem) !important }
-
-.t_lastpostdate
-{ width: initial !important }
-
-.topic h2, #portal h2, #portal_foot h2, thead th
-{ font-size: 2em }
 
 }
 
@@ -108,12 +102,6 @@ html, body
 
 #wrap
 { margin: 0 0 44px !important }
-
-.c_cat-title
-{ min-width: calc(100% - 8rem) !important }
-
-.t_lastpostdate
-{ width: initial !important }
 
 .c_post, #topic_review .c_desc + td
 { max-width: 100% }
@@ -166,7 +154,10 @@ html, body
 #acplogin tr td:last-child, #acplogin #loginform, #realtop, #top, #top_menu,
 #top_info, .drop_menu > li, #submenu, .c_foot > span, #boardmeta, .c_cat-title,
 .c_postinfo, .c_footicons, #fast-reply > dd, #c_postbtn, [align="center"],
-.warn, .c_cat-lastpost
+.warn,
+.c_cat-lastpost,
+.c_user > div:first-child,
+.c_user > a > div:first-child
 { display: flex }
 
 .forums
@@ -196,7 +187,9 @@ blockquote > dl
 { justify-content: center }
 
 #c_notes > form, #top_info, .c_foot > span, #acplogin, .c_postinfo,
-#edit_profile > tbody > tr
+#edit_profile > tbody > tr,
+.c_user > div:first-child,
+.c_user > a > div:first-child
 { align-items: center }
 
 #realtop, #top
@@ -210,7 +203,7 @@ blockquote > dl
 { align-self: baseline }
 
 #realtop, #submenu, .c_foot > span, .c_cat-title, #fast-reply > dd, .warn,
-.c_cat-lastpost, #inlinetopic > .posts > tbody > tr
+#inlinetopic > .posts > tbody > tr
 { flex-wrap: wrap }
 
 #top
@@ -225,7 +218,8 @@ blockquote > dl
 { flex: 2
 }
 
-.warning
+.warning,
+.t_lastpostdate
 { order: 1 }
 
 .warn > a:last-of-type
@@ -238,79 +232,102 @@ blockquote > dl
 
 /* {{{ Fonts */
 
-.c_post, #error_box .generic small:before, html, body, thead th small,
-textarea, h3, #profile_menu
+html,
+body,
+h3,
+textarea,
+thead th small,
+#profile_menu,
+#error_box .generic small:before,
+.c_post
 { font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
 }
 
-#logo, .c_post big, #top, #subhuman, h2, .category h2, .topic h2, #portal h2,
-#portal_foot h2, thead th, #copyright, blockquote dl, .notice, .error,
-.spoiler_toggle, th.c_cat-title, th.c_cat-starter, th.c_cat-replies,
-th.c_cat-views, th.c_cat-lastpost, .meta_menu a, .editby, .queued,
-.c_username > a, .c_user > .usertitle, .topic .user_info > dd:first-of-type
-{ font-family: "Quicksand", sans-serif
-}
+thead th,
+blockquote dl,
+#logo,
+#top,
+#subhuman, h2,
+#copyright,
+#portal h2,
+#portal_foot h2,
+.c_post big,
+.category h2,
+.topic h2,
+.notice,
+.error,
+.spoiler_toggle,
+.meta_menu a,
+.editby,
+.queued,
+.c_username > a,
+.c_user > .usertitle,
+.topic .user_info > dd:first-of-type,
+{ font-family: "Quicksand", sans-serif }
 
 code
-{ font-family: "Droid Sans Mono", monospace
-}
+{ font-family: "Droid Sans Mono", monospace }
 
-.c_post-attachment > dd > a::before, .c_post a::after, .collapse::before,
-.uncollapse::before, .replied-marker::before, #error_box > tbody::before
-{ font-family: "FontAwesome"
-}
+.c_post-attachment > dd > a::before,
+.c_post a::after,
+.collapse::before,
+.uncollapse::before,
+.replied-marker::before,
+#error_box > tbody::before
+{ font-family: "FontAwesome" }
 
-.c_cat-views
-{ font-family: "FontAwesome", "Open Sans"
-}
+.c_cat-views,
+.c_cat-replies > a::before,
+.c_cat-views::before,
+.c_cat-starter::before,
+.t_lastpostdate + a::before
+{ font-family: "FontAwesome", "Open Sans" }
 
-th.c_cat-title, th.c_cat-starter, th.c_cat-replies, th.c_cat-views,
-th.c_cat-lastpost, thead > tr > th small
+thead > tr > th small
 { font-weight: 400 }
 
 .c_user > .usertitle
 { font-weight: 600 }
 
-#top_info > strong > a, #top_info > small > a::before, .warn > a
-{ font-size: 1rem
-}
+#top_info > strong > a,
+#top_info > small > a::before,
+.t_lastpostdate,
+.t_lastpostdate + a,
+.warn > a
+{ font-size: 1rem }
 
-#top_info, #top_info > small > a
-{ font-size: 0
-}
+#top_info,
+#top_info > small > a,
+.c_cat-lastpost
+{ font-size: 0 }
 
 thead > tr > th small
-{ font-size: 0.4em
-}
+{ font-size: 0.4em }
 
-ul.cat-topicpages, .c_head, .c_foot, .c_sort
-{ font-size: 0.8em
-}
-
-ul.cat-pages, .meta_box
-{ font-size: 0.9em
-}
+ul.cat-topicpages, .c_head, .c_foot, .c_sort, .meta_box
+{ font-size: 0.8em }
 
 td, textarea, #profile_menuwrap, button, .btn_fake, input[type="button"],
-.btn_text, #top
-{ font-size: 1em
-}
+.btn_text, #top, 
+{ font-size: 1em }
 
 h2, h3
-{ font-size: 1.1em
-}
+{ font-size: 1.1em }
 
-#logo
-{ font-size: 1.5em
-}
+#logo,
+.cat-pages
+{ font-size: 1.5em }
 
 h1, #top_bar::before
 { font-size: 2em
 }
 
-.c_cat-views
-{ white-space: pre-line
+.row1 > .c_cat-views, .row2 > .c_cat-views
+{ white-space: nowrap
 }
+
+.c_username
+{ word-wrap: break-word }
 
 /* }}} */
 
@@ -377,7 +394,7 @@ big > big > big > big > big > big > big > big > big > big > big > big > big > bi
 ; color: #ECEFF1
 }
 
-[data-desc]:hover::after,
+[data-desc]:hover::after
 { content: attr(data-desc)
 }
 
@@ -948,20 +965,21 @@ ul li.cat-pageshead
 
 .cat-pages a, .cat-pagesjump i, .cat-topicpages a
 { background-color: #F0F0F0
-; border-bottom: 3px solid #D0D0D0
+; border-bottom: 0.3em solid #D0D0D0
 ; color: #4D4D4D
 }
 
-.cat-pages a:hover, .cat-topicpages a:hover
-{ border-bottom: 3px solid #424242
+.cat-pages a:hover,
+.cat-topicpages a:hover
+{ border-color: #424242
 ; color: #2D2D2D
 }
 
 .cat-pages span
 { color: #2D2D2D
 ; cursor: default
-; padding: 4px 8px
-; border-bottom: 3px solid #2D2D2D
+; padding: 1em
+; border-bottom: 0.3em solid #2D2D2D
 }
 
 .cat-pages input
@@ -1175,7 +1193,9 @@ padding:4px 0 4px 20px;
 ; border: 5px solid #F0F0F0
 ; box-shadow: 0 0 0 5px #3D3D3D
 ; overflow: hidden
+; min-width: 150px
 ; max-width: 150px !important
+; min-height: 150px
 ; max-height: 150px !important
 ; transition: 0.3s border-radius cubic-bezier(.55,0,0.1,1)
 }
@@ -1229,7 +1249,9 @@ td.c_user div:first-child img
 { padding: 0.5em }
 
 .warn > a:last-of-type
-{ width: 100% }
+{ width: 100%
+; text-align: center
+}
 
 .warning
 { color: crimson
@@ -2018,21 +2040,22 @@ list-style-type:square;
 margin-left:10px;
 }
 
-.cat-pages a,.cat-pagesjump i,.cat-topicpages a
+.cat-pages a,
+.cat-pagesjump i,
+.cat-topicpages a
 { cursor: pointer
-; padding: 4px 8px
+; padding: 1em
 }
 
-.cat-topicpages a {
-padding:0 2px;
-}
+.cat-topicpages a
+{ padding: 0.5em 0.5em 0 0.5em }
 
 .cat-buttons:last-of-type
 { border-bottom: 0.2em solid #D0D0D0
 }
 
 .cat-buttons, .topic-buttons
-{ padding: 2em
+{ padding: 2em 2em 0.5em 0
 ; text-align: right
 ; background-color: #F0F0F0
 }
@@ -2133,7 +2156,7 @@ td.c_cat-mark + td.c_cat-mark
 ; padding: 0 1em
 }
 
-.c_cat-icon, .c_cat-replies
+.c_cat-icon
 { text-align: center
 ; min-width: 3em
 ; max-width: 3em
@@ -2142,14 +2165,17 @@ td.c_cat-mark + td.c_cat-mark
 .c_cat-title
 { font-size: 0 }
 
+.c_cat-title ~ td
+{ margin-top: 1rem }
+
 .c_cat-mark + .c_cat-mark + .c_cat-title
-{ max-width: calc(40% - 7rem)
-; min-width: calc(40% - 7rem)
+{ max-width: calc(100% - 8rem)
+; min-width: calc(100% - 8rem)
 }
 
 .c_cat-mark:first-child + .c_cat-title
-{ max-width: calc(40% - 3rem)
-; min-width: calc(40% - 3rem)
+{ max-width: calc(100% - 4rem)
+; min-width: calc(100% - 4rem)
 }
 
 .c_cat-title > a
@@ -2161,37 +2187,73 @@ td.c_cat-mark + td.c_cat-mark
 { width: calc(100% - 3em) }
 
 .c_cat-title > ul + a
-{ width: calc(100% - 8em) }
+{ width: calc(100% - 10em) }
 
 .c_cat-title > ul
 { order: 2
+; padding-right: 1em
 }
 
 .c_cat-title > span, .c_cat-title > div, .c_cat-title > ul
 { font-size: 1rem
 }
 
-.c_cat-starter
-{ width: 15%
+.c_cat-mark:first-child + .c_cat-title + .c_cat-starter
+{ min-width: calc(50% - 8.5em)
+; max-width: calc(50% - 8.5em)
+; margin-left: 3.5em
 }
 
-.c_cat-title > a, .c_cat-title > .description, .c_cat-starter, .c_cat-lastpost
+.c_cat-mark + .c_cat-mark + .c_cat-title + .c_cat-starter
+{ min-width: calc(50% - 11.5em)
+; max-width: calc(50% - 11.5em)
+; margin-left: 6.5em
+}
+
+.c_cat-starter::before
+{ content: "\f007\a0"
+; color: #8D8D8D
+}
+
+.c_cat-starter > a,
+.c_cat-replies > a,
+.c_cat-views,
+.c_cat-lastpost,
+.c_cat-lastpost > a
+{ color: #8D8D8D }
+
+.c_cat-replies
+{ min-width: 5em; max-width: 5em }
+
+.c_cat-replies > a::before
+{ content: "\f0e5\a0" }
+
+.c_cat-views
+{ min-width: 7em; max-width: 7em }
+
+.c_cat-views::before
+{ content: "\f06e\a0" }
+
+.c_cat-title > a, .c_cat-title > .description, .t_lastpostdate + a
 { overflow: hidden
 ; text-overflow: ellipsis
 ; white-space: nowrap
 }
 
 .c_cat-lastpost
-{
+{ min-width: calc(50% - 7rem); max-width: calc(50% - 7rem)
 }
 
 .t_lastpostdate
-{ padding-right: 1em
-; width: 100%
+{ padding: 0 1em
+; min-width: 12em
 }
 
 .t_lastpostdate + a
 { padding-left: 0.5em }
+
+.t_lastpostdate + a::before
+{ content: "\f14b\a0" }
 
 .c_post
 { padding: 0.5em
@@ -2641,9 +2703,16 @@ clear:both;
 line-height:2;
 }
 
-.c_cat-starter,.c_cat-replies,.c_cat-views,td.c_poll-total,td.c_poll-vote,td.c_topicfoot,.warn,.ucp th, #c_notes,.calendar th {
-text-align:center;
-}
+#c_notes,
+.warn,
+.c_cat-views,
+.c_cat-replies,
+.ucp th,
+.calendar th
+td.c_poll-total,
+td.c_poll-vote,
+td.c_topicfoot
+{ text-align: center }
 
 blockquote dl dd, #foot #foot_links {
 text-align:right;
@@ -2900,6 +2969,7 @@ padding:0;
 
 .replied-marker
 { order: 3
+; padding-right: 1em
 }
 
 .replied-marker::before
