@@ -216,7 +216,8 @@ blockquote > dl,
 #inlinetopic > .posts > tbody > tr,
 .profile:nth-child(2) > tbody > tr:first-child,
 #search_results_topics + .forums > tbody > .row1,
-#search_results_topics + .forums > tbody > .row2
+#search_results_topics + .forums > tbody > .row2,
+#announcement_head ~ tr
 { flex-wrap: wrap }
 
 #top
@@ -1412,71 +1413,71 @@ width:15%;
 ; padding: 2em 1em
 }
 
-.poll > tbody > tr:nth-last-of-type(2) > .c_poll-bar > div
-{ background-color: #C62828
+.poll > tbody > tr:nth-of-type(2) > .c_poll-bar > div
+{ background-color: #9C1153
 }
 
-.poll > tbody > tr:nth-last-of-type(3) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(3) > .c_poll-bar > div
 { background-color: #AD1457
 }
 
-.poll > tbody > tr:nth-last-of-type(4) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(4) > .c_poll-bar > div
+{ background-color: #C2185B
+}
+
+.poll > tbody > tr:nth-of-type(5) > .c_poll-bar > div
+{ background-color: #D81B60
+}
+
+.poll > tbody > tr:nth-of-type(6) > .c_poll-bar > div
+{ background-color: #E91E63
+}
+
+.poll > tbody > tr:nth-of-type(7) > .c_poll-bar > div
+{ background-color: #EC407A
+}
+
+.poll > tbody > tr:nth-of-type(8) > .c_poll-bar > div
+{ background-color: #CC449B
+}
+
+.poll > tbody > tr:nth-of-type(9) > .c_poll-bar > div
+{ background-color: #AB47BC
+}
+
+.poll > tbody > tr:nth-of-type(10) > .c_poll-bar > div
+{ background-color: #9C27B0
+}
+
+.poll > tbody > tr:nth-of-type(11) > .c_poll-bar > div
+{ background-color: #8E24AA
+}
+
+.poll > tbody > tr:nth-of-type(12) > .c_poll-bar > div
+{ background-color: #7B1FA2
+}
+
+.poll > tbody > tr:nth-of-type(13) > .c_poll-bar > div
 { background-color: #6A1B9A
 }
 
-.poll > tbody > tr:nth-last-of-type(5) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(14) > .c_poll-bar > div
+{ background-color: #58219D
+}
+
+.poll > tbody > tr:nth-of-type(15) > .c_poll-bar > div
 { background-color: #4527A0
 }
 
-.poll > tbody > tr:nth-last-of-type(6) > .c_poll-bar > div
-{ background-color: #283593
+.poll > tbody > tr:nth-of-type(16) > .c_poll-bar > div
+{ background-color: #512DA8
 }
 
-.poll > tbody > tr:nth-last-of-type(7) > .c_poll-bar > div
-{ background-color: #1565C0
+.poll > tbody > tr:nth-of-type(17) > .c_poll-bar > div
+{ background-color: #5E35B1
 }
 
-.poll > tbody > tr:nth-last-of-type(8) > .c_poll-bar > div
-{ background-color: #0277BD
-}
-
-.poll > tbody > tr:nth-last-of-type(9) > .c_poll-bar > div
-{ background-color: #00838F
-}
-
-.poll > tbody > tr:nth-last-of-type(10) > .c_poll-bar > div
-{ background-color: #00695C
-}
-
-.poll > tbody > tr:nth-last-of-type(11) > .c_poll-bar > div
-{ background-color: #2E7D32
-}
-
-.poll > tbody > tr:nth-last-of-type(12) > .c_poll-bar > div
-{ background-color: #558B2F
-}
-
-.poll > tbody > tr:nth-last-of-type(13) > .c_poll-bar > div
-{ background-color: #9E9D24
-}
-
-.poll > tbody > tr:nth-last-of-type(14) > .c_poll-bar > div
-{ background-color: #F9A825
-}
-
-.poll > tbody > tr:nth-last-of-type(15) > .c_poll-bar > div
-{ background-color: #FF8F00
-}
-
-.poll > tbody > tr:nth-last-of-type(16) > .c_poll-bar > div
-{ background-color: #EF6C00
-}
-
-.poll > tbody > tr:nth-last-of-type(17) > .c_poll-bar > div
-{ background-color: #D84315
-}
-
-.poll > tbody > tr:nth-last-of-type(n+17) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(n+17) > .c_poll-bar > div
 { background-color: #424242
 }
 
@@ -1751,7 +1752,8 @@ td.c_view
 #emot_end:hover, #emot_end:focus
 { background-color: #2196F3 }
 
-.row1, .row2, #who_posted > tbody > tr
+.row1, .row2, #who_posted > tbody > tr,
+#forum_leaders_global > tbody > tr:nth-child(n+2)
 { background-color: #F0F0F0
 ; padding: 1em 0
 ; margin-bottom: 1em
@@ -1791,6 +1793,13 @@ td.c_view
 
 #pm_inbox > tbody > tr[class] > td:nth-child(4)
 { min-width: 25%; max-width: 25% }
+
+#forum_leaders_global > tbody > tr:first-child > th,
+#forum_leaders_global > tbody > tr:nth-child(n+2) > td
+{ min-width: 33%; max-width: 33% }
+
+#forum_leaders_global > tbody > tr:nth-child(n+2) > td
+{ padding: 0 1em }
 
 #quick_pm_compose > tbody > tr:first-child
 { display: flex
@@ -1946,10 +1955,13 @@ margin:0;
 { min-width: 100%; max-width: 100% }
 
 #search_results_topics + .forums > tbody > tr > .c_cat-title:first-child ~ td,
-#search_results_topics + .forums > tbody > tr > .c_cat-title:first-child ~ .c_cat-lastpost > a
+#search_results_topics + .forums > tbody > tr > .c_cat-title:first-child ~ .c_cat-lastpost > a,
+#search_results_topics + .forums > tbody > tr > .c_cat-title:nth-child(2) ~ td,
+#search_results_topics + .forums > tbody > tr > .c_cat-title:nth-child(2) ~ .c_cat-lastpost > a
 { padding-bottom: 1em }
 
-#search_results_topics + .forums > tbody > tr > .c_cat-title:first-child > a
+#search_results_topics + .forums > tbody > tr > .c_cat-title:first-child > a,
+#search_results_topics + .forums > tbody > tr > .c_cat-title:nth-child(2) > a
 { min-width: calc(100% - 8em); max-width: calc(100% - 8em)
 ; padding-top: 1em
 }
@@ -1958,6 +1970,9 @@ margin:0;
 { min-width: 8em; max-width: 8em
 ; padding-top: 1em
 }
+
+#search_results_topics + .forums > tbody > tr > .c_cat-title:nth-child(2) > ul
+{ padding-top: 1em }
 
 #search_results_topics + .forums > tbody > tr > .c_cat-title:first-child > div
 { min-width: 100%; max-width: 100% }
@@ -2191,6 +2206,7 @@ margin-left:10px;
 
 .cat-buttons:last-of-type
 { border-bottom: 0.2em solid #D0D0D0
+; padding-bottom: 2em
 }
 
 .cat-buttons, .topic-buttons
@@ -2199,7 +2215,7 @@ margin-left:10px;
 ; background-color: #F0F0F0
 }
 
-script + .topic-buttons
+.topic-buttons:last-of-type
 { padding: 2em }
 
 .postbtn td {
@@ -2210,6 +2226,8 @@ text-align:center;
 #announcement_list::before
 { content: "ANNOUNCEMENTS"
 ; transition: 0.5s all cubic-bezier(.55,0,0.1,1)
+; padding: 2em 1em 1em
+; font-weight: bold
 }
 
 #announcement_list > tbody
@@ -2223,6 +2241,10 @@ text-align:center;
 
 #announcement_head
 { display: none }
+
+#announcement_head ~ tr > .c_cat-title,
+#announcement_head ~ tr > .c_cat-starter
+{ padding: 0 1rem }
 
 #inlinetopic > .posts > tbody > tr:first-child:not([class])
 { display: none
@@ -3097,20 +3119,14 @@ padding:0;
 { border-color: #B71C1C
 }
 
-.hot-new
-{ color: #B71C1C
+.hot-new,
+.plain-new,
+.poll-new
+{ color: #3D3D3D
 }
 
 .online
 { border-color: #8BC34A
-}
-
-.plain-new
-{ color: #8BC34A
-}
-
-.poll-new
-{ color: #03A9F4
 }
 
 .bunk-big-butt
@@ -3182,12 +3198,8 @@ span.poll::before, .poll-new::before
 { content: "\f023"
 }
 
-.folder
+.plain, .hot, .poll, .locked
 { color: #8D8D8D }
-
-.fa
-{ font-family: "FontAwesome"
-}
 
 .glow
 { animation: glow 1s ease-in infinite alternate
