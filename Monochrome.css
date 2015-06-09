@@ -35,6 +35,12 @@
  - Fix topics section spacing
     - Use flex-wrap: nowrap and wrap to control "last post by"s width
 
+FIXME NOOF
+- No URL highlighting
+- ZB advertisement stretches page
+- Avatar not centered in circle
+- Post attachment in horizontal list
+
 */
 
 /* {{{ External fonts */
@@ -63,7 +69,11 @@ html, body
 { font-size: 1rem }
 
 .c_user > .usertitle
-{ font-size: 0.8em }
+{ font-size: 0.8em !important }
+
+.c_username > a,
+.topic .user_info > dd:first-of-type
+{ font-size: 1rem !important }
 
 }
 
@@ -112,12 +122,36 @@ html, body
 #profile_menu > li > ul > li
 { min-width: 33%; max-width: 33% }
 
+.c_cat-starter
+{ display: none }
+
+.c_cat-mark:first-child + .c_cat-title ~ .c_cat-lastpost
+{ min-width: calc(100% - 15rem); max-width: calc(100% - 15rem) }
+
+.c_cat-mark + .c_cat-mark ~ .c_cat-lastpost
+{ min-width: calc(100% - 18rem); max-width: calc(100% - 18eem) }
+
+.c_cat-mark:first-child + .c_cat-title ~ .c_cat-replies
+{ padding-left: 3em
+; min-width: 8em
+; max-width: 8em
+}
+
+.c_cat-mark + .c_cat-mark ~ .c_cat-replies
+{ padding-left: 6em
+; min-width: 11em
+; max-width: 11em
+}
+
 .c_post, #topic_review .c_desc + td
 { max-width: 100% }
 
 .c_post img, #topic_review img, .c_post video, .c_post object, .c_post audio,
 .c_post iframe
-{ max-width: calc(100% - 1rem) }
+{ max-width: calc(100% - 1rem) !important }
+
+.c_topicfoot
+{ justify-content: flex-start !important }
 
 }
 
@@ -169,7 +203,12 @@ html, body
 .c_cat-lastpost,
 .c_user > div:first-child,
 .c_user > a > div:first-child,
-#profile_menu > li > ul
+#profile_menu > li > ul,
+.c_user > div:first-child,
+.c_user > a > div:first-child,
+.cat-pages,
+.profile .c_mark > div,
+.c_topicfoot
 { display: flex }
 
 .forums
@@ -180,7 +219,8 @@ html, body
 { flex-direction: column }
 
 .c_sig blockquote,
-.profile > thead > tr
+.profile > thead > tr,
+.user_info
 { flex-direction: column-reverse }
 
 .c_foot > span
@@ -192,14 +232,24 @@ blockquote > dl,
 { justify-content: space-between }
 
 #acplogin tr, #acplogin th, #submenu, .generic, #fast-reply > dd, #c_postbtn,
-[align="center"], #fast-reply, .warn
+[align="center"], #fast-reply, .warn,
+.c_user > div:first-child,
+.c_user > a > div:first-child,
+#main > table:first-child > tbody > tr,
+#main > script:first-child + table > tbody > tr,
+#topic_viewer + table > tbody > tr,
+.profile .c_mark > div,
+.c_topicfoot
 { justify-content: center }
 
-#c_notes > form, #top_info, .c_foot > span, #acplogin, .c_postinfo,
+#c_notes > form, #top_info, .c_foot > span, #acplogin,
 #edit_profile > tbody > tr,
 .c_user > div:first-child,
 .c_user > a > div:first-child,
-.c_cat-mark
+.c_cat-mark,
+.c_user > div:first-child,
+.c_user > a > div:first-child,
+.profile .c_mark > div
 { align-items: center }
 
 #realtop, #top
@@ -209,7 +259,7 @@ blockquote > dl,
 .c_cat-views, .c_cat-starter, .c_cat-title, .c_cat-lastpost, .replied-marker
 { align-self: center }
 
-#top_info
+#top_info, .c_postinfo
 { align-self: baseline }
 
 #realtop, #submenu, .c_foot > span, .c_cat-title, #fast-reply > dd, .warn,
@@ -298,13 +348,24 @@ code
 .c_topicfoot > a
 { font-family: "FontAwesome", "Open Sans" }
 
-thead > tr > th small
+.c_forum div,
+.forums .forum .c_last
+{ font-weight: 300 }
+
+thead > tr > th small,
+.c_forum div a,
+.c_last-title,
+.c_last-title ~ strong
 { font-weight: 400 }
 
-.c_user > .usertitle
+.c_user > .usertitle,
+.forums th a,
+.forums th a strong
 { font-weight: 600 }
 
-#findposts .c_mark
+#findposts .c_mark,
+.c_next > a,
+.forums th
 { font-weight: 700 }
 
 #top_info > strong > a,
@@ -326,6 +387,9 @@ thead > tr > th small
 ul.cat-topicpages, .c_head, .c_foot, .c_sort, .meta_box
 { font-size: 0.8em }
 
+.c_view-list
+{ font-size: 0.9em }
+
 td, textarea, #profile_menuwrap, button, .btn_fake, input[type="button"],
 .btn_text, #top
 { font-size: 1em }
@@ -333,7 +397,10 @@ td, textarea, #profile_menuwrap, button, .btn_fake, input[type="button"],
 h2, h3
 { font-size: 1.1em }
 
-.cat-pages
+.c_forum strong a
+{ font-size: 1.25em }
+
+.c_next > a
 { font-size: 1.3em }
 
 #logo,
@@ -344,6 +411,20 @@ h1, #top_bar::before,
 .folder,
 #findposts .c_mark
 { font-size: 2em }
+
+.c_last-title
+{ line-height: 1.5 }
+
+.c_view-list
+{ line-height: 1.8 }
+
+.c_next > a
+{ text-align: center }
+
+.forums th,
+.c_forum strong a
+{ text-transform: uppercase
+}
 
 .row1 > .c_cat-views, .row2 > .c_cat-views
 { white-space: nowrap
@@ -482,6 +563,7 @@ th
 ; color: #4D4D4D
 ; padding: 1em 1em
 ; text-align: left
+; display: block
 }
 
 th[colspan]
@@ -492,6 +574,7 @@ th[colspan]
 td
 { color: #3D3D3D
 ; padding: 0 0.5em
+; display: block
 }
 
 h2, th a, th a:hover
@@ -735,8 +818,8 @@ input[type="button"]:hover, .c_foot a:hover
 ; top: 0
 ; right: -12em
 ; z-index: 2
-; background-color: #455A64
-; border-left: 0.1em solid #37474F
+; background-color: #3d3d3d
+; border-left: 0.1em solid #4d4d4d
 ; transition: 0.5s right cubic-bezier(.55,0,0.1,1),
               0.5s visibility 0.5s cubic-bezier(.55,0,0.1,1)
 }
@@ -745,6 +828,13 @@ input[type="button"]:hover, .c_foot a:hover
 { transition: 0.5s right cubic-bezier(.55,0,0.1,1)
 ; visibility: visible
 ; right: 0
+}
+
+#top_menu > li:first-child::before
+{ content: "Menu"
+; padding: 1em
+; color: #f0f0f0
+; border-bottom: 0.1em solid #4d4d4d
 }
 
 #top_info
@@ -817,8 +907,8 @@ input[type="button"]:hover, .c_foot a:hover
 }
 
 .drop_menu > li a, .drop_menu ul > li a
-{ border-bottom: 0.1em solid #546E7A
-; border-top: 0.1em solid #37474F
+{ border-bottom: 0.1em solid #4d4d4d
+; border-top: 0.1em solid #2d2d2d
 }
 
 .drop_menu li:last-child > ul > li:last-child a
@@ -839,6 +929,7 @@ input[type="button"]:hover, .c_foot a:hover
 
 .drop_menu a:focus, .drop_menu a:hover
 { background-color: #546E7A
+; border-top: 0.1em solid #485F69
 ; border-bottom: 0.1em solid #607D8B
 }
 
@@ -1004,12 +1095,6 @@ ul li.cat-pageshead
 ; border-bottom: 0.3em solid #2D2D2D
 }
 
-.cat-pages input
-{ color: #d0d0d0
-; padding: 3px 5px
-; vertical-align: baseline
-}
-
 .c_head, .c_foot, .c_sort
 { line-height: 1.8
 ; width: 100%
@@ -1072,14 +1157,6 @@ width:20px;
 { max-height: 99999px
 }
 
-.forums th
-{ font-weight: 400
-}
-
-.forums th a, .forums th a strong
-{ font-weight: 600
-}
-
 .forums .c_mark
 { display: none
 }
@@ -1100,33 +1177,10 @@ width:20px;
 { color: #3D3D3D
 }
 
-.c_forum strong a
-{ font-size: 1.25em
-; text-transform: uppercase
-}
-
-.c_forum div
-{ font-weight: 300
-}
-
-.c_forum div a
-{ font-weight: 400
-}
-
 .forums .forum .c_last
 { flex: 1
-; font-weight: 300
 ; display: flex
 ; flex-direction: column
-}
-
-.c_last-title
-{ line-height: 1.5
-; font-weight: 400
-}
-
-.c_last-title ~ strong
-{ font-weight: 400
 }
 
 .c_info
@@ -1179,9 +1233,7 @@ padding:4px 0 4px 20px;
 }
 
 #topic_viewer > tbody > tr
-{
-; background-color: #F0F0F0
-}
+{ background-color: #F0F0F0 }
 
 #topic_viewer th:first-child > span
 { display: block
@@ -1189,22 +1241,31 @@ padding:4px 0 4px 20px;
 ; font-weight: 300
 }
 
+#topic_viewer > tbody > tr:last-child,
+#forum_footer,
+.exclusivebutton
+{ border-bottom: 0.2em solid #D0D0D0 }
+
 .c_username
-{ padding: 2px 0
+{ margin: 0 0 2em 0
+; padding: .5em 1em
 ; text-align: center
 ; min-width: 192px
 ; max-width: 192px
+; background-color: #3D3D3D
 }
 
 .c_username > a
 { font-size: 1.33em
 ; font-weight: bold
+; color: #f0f0f0
 }
 
 .c_user
 { font-size: 0.8em
 ; min-width: 192px
 ; max-width: 192px
+; padding: 0
 ; vertical-align: top
 ; word-wrap: break-word
 ; text-overflow: ellipsis
@@ -1228,19 +1289,13 @@ td.c_user div:first-child:hover
 }
 
 td.c_user div:first-child img
-{ margin: -15px 0 0 -15px
-}
-
-.user_info
-{ flex-direction: column
-; 
-}
+{ max-width: 140px !important; max-height: 140px !important }
 
 .topic .user_info
 { font-size: 0 }
 
 .topic .user_info > dd:first-of-type
-{ font-size: 2rem
+{ font-size: 1.5rem
 ; text-align: center
 ; width: 100%
 ; margin: 0
@@ -1251,7 +1306,7 @@ td.c_user div:first-child img
 { display: none }
 
 .c_user > .usertitle
-{ margin: 1em 0
+{ margin: 2em 0 1em
 ; padding: 0.5em
 ; overflow: hidden
 
@@ -1377,9 +1432,7 @@ margin-bottom:1px;
 }
 
 .profile .c_mark > div > img
-{ margin-top: -0.3em
-; margin-left: -0.3em
-}
+{ margin: -0.3em }
 
 .profile input[name="status"]
 { max-width: calc(50vw - 9em) }
@@ -1413,71 +1466,71 @@ width:15%;
 ; padding: 2em 1em
 }
 
-.poll > tbody > tr:nth-of-type(2) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(1) > .c_poll-bar > div
 { background-color: #9C1153
 }
 
-.poll > tbody > tr:nth-of-type(3) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(2) > .c_poll-bar > div
 { background-color: #AD1457
 }
 
-.poll > tbody > tr:nth-of-type(4) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(3) > .c_poll-bar > div
 { background-color: #C2185B
 }
 
-.poll > tbody > tr:nth-of-type(5) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(4) > .c_poll-bar > div
 { background-color: #D81B60
 }
 
-.poll > tbody > tr:nth-of-type(6) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(5) > .c_poll-bar > div
 { background-color: #E91E63
 }
 
-.poll > tbody > tr:nth-of-type(7) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(6) > .c_poll-bar > div
 { background-color: #EC407A
 }
 
-.poll > tbody > tr:nth-of-type(8) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(7) > .c_poll-bar > div
 { background-color: #CC449B
 }
 
-.poll > tbody > tr:nth-of-type(9) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(8) > .c_poll-bar > div
 { background-color: #AB47BC
 }
 
-.poll > tbody > tr:nth-of-type(10) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(9) > .c_poll-bar > div
 { background-color: #9C27B0
 }
 
-.poll > tbody > tr:nth-of-type(11) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(10) > .c_poll-bar > div
 { background-color: #8E24AA
 }
 
-.poll > tbody > tr:nth-of-type(12) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(11) > .c_poll-bar > div
 { background-color: #7B1FA2
 }
 
-.poll > tbody > tr:nth-of-type(13) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(12) > .c_poll-bar > div
 { background-color: #6A1B9A
 }
 
-.poll > tbody > tr:nth-of-type(14) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(13) > .c_poll-bar > div
 { background-color: #58219D
 }
 
-.poll > tbody > tr:nth-of-type(15) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(14) > .c_poll-bar > div
 { background-color: #4527A0
 }
 
-.poll > tbody > tr:nth-of-type(16) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(15) > .c_poll-bar > div
 { background-color: #512DA8
 }
 
-.poll > tbody > tr:nth-of-type(17) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(16) > .c_poll-bar > div
 { background-color: #5E35B1
 }
 
-.poll > tbody > tr:nth-of-type(n+17) > .c_poll-bar > div
+.poll > tbody > tr:nth-of-type(n+16) > .c_poll-bar > div
 { background-color: #424242
 }
 
@@ -1555,9 +1608,8 @@ code
 ; background-color: #3d3d3d
 }
 
-.c_username, .c_postinfo
-{ padding: 1.5em 1em 1em
-}
+.c_postinfo
+{ padding: 1em }
 
 .c_postinfo
 { font-size: 0.8em
@@ -1643,29 +1695,25 @@ code
 ; min-width: 192px
 }
 
-.c_footicons, .c_next
+.c_footicons
 { width: 100% }
 
 .c_next
-{ padding: 1em 0 }
+{ margin: 3rem 0 2rem 0 }
 
-.c_next a {
-display:block;
-font-size:125%;
-font-weight:700;
-text-align:center;
+.c_next > a
+{ padding: 1rem 8.9rem
+; background-color: #3D3D3D
+; color: #F0F0F0
 }
 
-td.c_view
+.c_view
 { color: #8D8D8D
-; padding: 2em 1em
+; padding: 1em
 }
 
 .c_view-list
-{ color: #8D8D8D
-; font-size: 0.9em
-; line-height: 1.8
-}
+{ color: #8D8D8D }
 
 #fast-reply
 { background-color: #F0F0F0
@@ -1780,6 +1828,21 @@ td.c_view
 { min-width: 100%
 ; max-width: 100%
 }
+
+#active_list > tbody > tr > td
+{ padding: 0 1em }
+
+#active_list > tbody > tr:first-child
+{ display: none }
+
+#active_list > tbody > tr > td:nth-child(1)
+{ min-width: 35%; max-width: 35% }
+
+#active_list > tbody > tr > td:nth-child(2)
+{ min-width: 40%; max-width: 40% }
+
+#active_list > tbody > tr > td:nth-child(3)
+{ min-width: 25%; max-width: 25% }
 
 #pm_inbox > tbody > tr[class] > td:nth-child(1)
 { min-width: 40%; max-width: 40% }
@@ -2054,9 +2117,7 @@ padding:1px 10px;
 }
 
 #foot_datetime > a
-{ font-size: 1.5em
-; text-transform: lowercase
-}
+{ text-transform: lowercase }
 
 #foot_datetime > a::before
 { content: "\25D4"
@@ -2152,7 +2213,8 @@ vertical-align: bottom
 left:auto;
 }
 
-#main > table:first-child
+#main > table:first-child,
+#main > script:first-child + table
 { height: auto !important
 ; margin: 0 !important
 }
@@ -2173,7 +2235,9 @@ form[id^="poll"] + .exclusivebutton > #topic_viewer > thead
 { background-color: #F0F0F0
 }
 
-#main > table iframe, .exclusivebutton + table td > div
+#main > table iframe,
+.exclusivebutton + table td > div,
+#topic_viewer + table > tbody > tr:first-child > td > div[style]
 { margin: 1em auto
 ; max-width: 90vw
 ; overflow: hidden
@@ -2201,22 +2265,26 @@ margin-left:10px;
 ; padding: 1em
 }
 
+.cat-pagesjump > form > input
+{ padding: 1em
+; margin-top: -1em
+}
+
+.cat-pages > li
+{ margin: 0 0.25em }
+
 .cat-topicpages a
 { padding: 0.5em 0.5em 0 0.5em }
 
-.cat-buttons:last-of-type
-{ border-bottom: 0.2em solid #D0D0D0
-; padding-bottom: 2em
-}
-
-.cat-buttons, .topic-buttons
-{ padding: 2em 2em 0.5em 0
+.cat-buttons,
+.topic-buttons
+{ padding: 2em 0
 ; text-align: right
 ; background-color: #F0F0F0
 }
 
-.topic-buttons:last-of-type
-{ padding: 2em }
+.cat-buttons
+{ border-bottom: 0.2em solid #D0D0D0 }
 
 .postbtn td {
 padding:5px;
@@ -2226,7 +2294,7 @@ text-align:center;
 #announcement_list::before
 { content: "ANNOUNCEMENTS"
 ; transition: 0.5s all cubic-bezier(.55,0,0.1,1)
-; padding: 2em 1em 1em
+; padding: 1em
 ; font-weight: bold
 }
 
@@ -2408,11 +2476,13 @@ a + .description
 
 .t_lastpostdate
 { padding: 0 1em
-; min-width: 12em
+; flex-grow: 2
 }
 
 .t_lastpostdate + a
-{ padding-left: 0.5em }
+{ padding-left: 0.5em
+; flex-shrink: 2
+}
 
 .t_lastpostdate + a::before
 { content: "\f14b\a0" }
@@ -2423,16 +2493,11 @@ a + .description
 ; max-height: 999999px
 ; width: 100%
 ; overflow: hidden
+; margin-top: -2rem
 }
 
 .c_sig, .c_nosig
 { width: 100% }
-
-.avatar {
-display:block;
-margin:auto;
-text-align:center;
-}
 
 .av_wrap {
 overflow:hidden;
@@ -2515,6 +2580,11 @@ margin-left:10px;
 ; background-color: #424242
 ; border: 0.1em solid #666
 ; transition: 0.5s background-color,border cubic-bezier(.55,0,0.1,1)
+}
+
+.c_post:hover a, .c_post:focus a
+{ color: #2196F3
+; transition: 0.3s color cubic-bezier(.55,0,0.1,1)
 }
 
 .c_post:hover .c_post-attachment, .c_post:focus .c_post-attachment
@@ -2831,16 +2901,15 @@ font-weight:700;
 
 .c_topicfoot
 { text-transform: uppercase
-; display: flex
-; flex-wrap: wrap
-; justify-content: center
 ; width: 100%
-; margin-top: 2rem
+; margin-top: 2.5rem
+; margin-bottom: -3rem
 ; font-size: 0
 }
 
 .c_topicfoot > a
 { padding: 0 0.5em
+; height: 0.8rem
 }
 
 .c_topicfoot > [href$="/old/"]::before
@@ -2866,9 +2935,8 @@ font-weight:700;
 { font-size: 120%
 }
 
-a.member, .calendar td a, .calendar a:hover, #faq dd a, #faq dd a:hover
-{ color: #4D4D4D
-}
+.calendar td a, .calendar a:hover, #faq dd a, #faq dd a:hover
+{ color: #4D4D4D }
 
 img,.meta_box button img,td.c_cat-mark input, .c_post-attachment img,.warn img,
 #ucp_gallery a img {

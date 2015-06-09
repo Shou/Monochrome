@@ -9,7 +9,7 @@ function views(vs) {
         var ss = s.split("<br>")
         var cs = ss[0].split(/,/g)
         var v = cs[0].trim() + fs[cs.length - 1]
-        var w = ss[1] ? "\a0\uf00d " + ss[1].split(' ')[0] : ""
+        var w = ss[1] ? "\u00a0\uf007 " + ss[1].split(' ')[0] : ""
 
         return v + w
     }
@@ -20,11 +20,25 @@ function views(vs) {
     }
 }
 
+function dates(ds) {
+    console.log("DATES NOW")
+    var rs = [ [/Today, /, ""], [/ AM/, "am"], [/ PM/, "pm"]
+             , [/One minute/, "1m"], [/ minutes/, "m"]
+             , [/Yesterday/, "YDA"]
+             , [new RegExp(" " + (new Date()).getFullYear()), ""]
+             ]
+    for (var j = 0, k = ds.length; j < k; j++)
+        for (var i = 0, l = rs.length; i < l; i++)
+            ds[j].textContent = ds[j].textContent.replace(rs[i][0], rs[i][1])
+    console.log("Dates replaced")
+}
+
 function tf() {
     time += 100
 
     var vs = qsa(".c_cat-replies > a, .c_cat-views")
-    if (vs.length > 0) views(vs)
+    var ds = qsa(".t_lastpostdate")
+    if (vs.length > 0 || ds.length > 0) views(vs), dates(ds)
     else if (time < maxTime)
         tu = setTimeout(tf, 100)
 }
