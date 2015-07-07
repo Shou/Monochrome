@@ -1,9 +1,9 @@
 
 With the creeping extinction of modern web design on Zetaboards, I've
-sacrificed my soul, sleep, and virginity to engender this responsive and
-material theme. Stand up and enamour with an explosive ovation before the
-theme's basis contemporary fad ends and my sweaty work has been pointless (just
-like it all), and the theme joins ranks with its current abhorrent antitheses.
+sacrificed my soul, sleep, and dignity to engender this responsive and material
+theme. Stand up and enamour with an explosive ovation before the theme's basis
+contemporary fad ends and my sweaty work has been pointless and the theme
+joins ranks with its current abhorrent antitheses.
 
 Scroll down for the raw juice.
 
