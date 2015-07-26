@@ -5,8 +5,6 @@ theme. Stand up and enamour with an explosive ovation before the theme's basis
 contemporary fad ends and my sweaty work has been pointless and the theme
 joins ranks with its current abhorrent antitheses.
 
-Scroll down for the raw juice.
-
 ## Features
 
 * Responsive design for your handy mobile devices
@@ -28,12 +26,14 @@ Scroll down for the raw juice.
 
 ## Installing
 
-Just copy/paste the CSS, and layout files into their equivalent pages. I should
-probably upload the accompanying buttons and settings files.
+Just copy/paste the CSS from `Monochrome.css` and layout from `layout.html` into their respective pages, then add the images/icons from `images.txt`. That's it.
 
 ## Disclaimer
 
 This is a work in progress: expect a bumpy ride, for now. Check the top of the
 source stylesheet for the TODO/FIXME list if you're truly curious about the
-erroneous state this project is in.
+disgusting state this project is in.
+
+If you find something you don't like submit a bug report and I'll see if
+there's anything I can do.
 
