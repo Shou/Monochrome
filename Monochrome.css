@@ -237,7 +237,7 @@ blockquote > dl,
 .c_user > a > div:first-child,
 #main > table:first-child > tbody > tr,
 #main > script:first-child + table > tbody > tr,
-#topic_viewer + table > tbody > tr,
+.topic + table:not(.topic) > tbody > tr,
 .profile .c_mark > div,
 .c_topicfoot,
 .c_postfoot > td:first-of-type
@@ -762,18 +762,32 @@ input, select, button, a.btn_fake, td.c_foot a
 .topic h2, #portal h2, #portal_foot h2, thead th
 { text-shadow: -0.04em 0.04em 0 #D0D0D0 }
 
-thead > tr > th small
+thead > tr > th small,
+#profile_menu,
+.search_results_post > thead > tr > th > a
 { text-shadow: none }
+
+.c_user > div:first-child, .c_user > a > div:first-child,
+.profile .c_mark > div
+{ border-color: #F0F0F0 }
 
 [data-desc]:hover::after,
 #top_info a[href$="/multi_login/"]:hover::after,
 #top_info a[href$="/multi_login/"]:focus::after,
 #top_info a[href$="/logout/"]:hover::after,
-#top_info a[href$="/logout/"]:focus::after
+#top_info a[href$="/logout/"]:focus::after,
+blockquote
 { border-color: #D0D0D0 }
+
+.spoiler
+{ border-color: #ccc }
 
 textarea:focus
 { border-color: #999 }
+
+.spoiler_toggle,
+.c_post-attachment
+{ border-color: #666 }
 
 input:focus, input.focus
 { border-color: #4D4D4D }
@@ -786,12 +800,27 @@ input:focus, input.focus
 .submit_error
 { border-color: #333 }
 
+.offline
+{ border-color: #B71C1C }
+
+.online
+{ border-color: #8BC34A }
+
 #profile_menu a:hover, #profile_menu a:focus,
 #profile_menu a::before, #profile_menu a::after
 { border-color: #0299AE }
 
+.c_post:hover .c_post-attachment, .c_post:focus .c_post-attachment
+{ border-color: #42A5F5 }
+
 #profile_menu a:hover, #profile_menu a:focus
 { border-color: transparent }
+
+.c_user > div:first-child, .c_user > a > div:first-child
+{ box-shadow: 0 0 0 0.5rem #3D3D3D }
+
+.profile .c_mark > div
+{ box-shadow: 0 0 0 0.3em #3D3D3D }
 
 .notice
 { box-shadow: 0 0 0 0.4rem #2D2D2D, 0 0 0 0.6rem #3D3D3D, 0 0 0 0.8rem #4D4D4D
@@ -957,13 +986,6 @@ input[type="checkbox"]:checked
 
 input[type="file"]
 { max-width: 40vw }
-
-/* TODO REM */
-.submit_error
-{ background: #000000
-; border-width: 0.1rem
-; border-style: solid
-}
 
 button, a.btn_fake, input[type="button"]
 { overflow: visible
@@ -1261,14 +1283,6 @@ button, a.btn_fake, input[type="button"]
 ; transform: rotate(45deg)
 }
 
-/* TODO REM */
-.meta_box
-{ background: url() repeat-x top #000
-; border: 1px solid #333
-; line-height: 150%
-; padding: 10px 25px
-}
-
 .meta_menu
 { padding: 0
 ; width: 50%
@@ -1466,7 +1480,7 @@ padding:4px 0 4px 20px;
 
 #topic_viewer > tbody > tr:last-child,
 #forum_footer,
-.topic > tbody > tr:last-child,
+.topic > tbody > tr:last-child
 { border-bottom: 0.2em solid #D0D0D0 }
 
 .c_username
@@ -1494,8 +1508,8 @@ padding:4px 0 4px 20px;
 
 .c_user > div:first-child, .c_user > a > div:first-child
 { border-radius: 50%
-; border: 5px solid #F0F0F0
-; box-shadow: 0 0 0 5px #3D3D3D
+; border-width: 0.5rem
+; border-style: solid
 ; overflow: hidden
 ; min-width: 150px
 ; max-width: 150px !important
@@ -1573,9 +1587,6 @@ font-weight:700;
 margin-bottom:1px;
 }
 
-#profile_menu
-{ text-shadow: none }
-
 #profile_menu > li > a
 { display: none }
 
@@ -1648,8 +1659,8 @@ margin-bottom:1px;
 }
 
 .profile .c_mark > div
-{ border: 0.3em solid #F0F0F0
-; box-shadow: 0 0 0 0.3em #3D3D3D
+{ border-width: 0.3em
+; border-style: solid
 ; border-radius: 50%
 ; overflow: hidden
 }
@@ -1708,7 +1719,8 @@ border-color:#333;
 }
 
 blockquote
-{ border: 0.1em solid #D0D0D0
+{ border-width: 0.1em
+; border-style: solid
 ; margin: 1em auto
 ; overflow: hidden
 }
@@ -1742,13 +1754,15 @@ code
 }
 
 .spoiler
-{ border:1px solid #ccc
-; border-top:0
-; padding:5px 7px
+{ border-width: 0.1rem
+; border-style: solid
+; border-top: 0
+; padding: 5px 7px
 }
 
 .spoiler_toggle
-{ border: 0.1em solid #666
+{ border-width: 0.1em
+; border-style: solid
 ; cursor: pointer
 ; font-weight: 700
 ; padding: 0.3em 0.5em
@@ -2678,7 +2692,8 @@ margin-left:10px;
 { font-size: 0.9em
 ; margin-top: 1em
 ; padding: 1em
-; border: 0.1em solid #666
+; border-width: 0.1em
+; border-style: solid
 ; transition: 0.5s background-color,border cubic-bezier(.55,0,0.1,1)
 }
 
@@ -2687,7 +2702,8 @@ margin-left:10px;
 }
 
 .c_post:hover .c_post-attachment, .c_post:focus .c_post-attachment
-{ border: 0.1em solid #42A5F5
+{ border-width: 0.1em
+; border-style: solid
 ; transition: 0.5s background-color cubic-bezier(.55,0,0.1,1), 0.5s border cubic-bezier(.55,0,0.1,1)
 }
 
@@ -3265,14 +3281,6 @@ padding:0;
 ; margin: 0.3em 0.3em
 ; transition: 0.3s all cubic-bezier(.55,0,0.1,1)
 ; display: inline-block
-}
-
-.offline
-{ border-color: #B71C1C
-}
-
-.online
-{ border-color: #8BC34A
 }
 
 .bunk-big-butt
