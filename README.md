@@ -1,4 +1,7 @@
 
+## Outdated!
+This theme has been superseded by the dark version, [Phosphor](https://github.com/Shou/Phosphor), and sadly all the nice changes have not been pulled into the brighter Monochrome. It's still good, but not as good as Phosphor.
+
 With the creeping extinction of modern web design on Zetaboards, I've
 sacrificed my soul, sleep, and dignity to engender this responsive and material
 theme. Stand up and enamour with an explosive ovation before the theme's basis
@@ -27,13 +30,3 @@ joins ranks with its current abhorrent antitheses.
 ## Installing
 
 Just copy/paste the CSS from `Monochrome.css` and layout from `layout.html` into their respective pages, then add the images/icons from `images.txt`. That's it.
-
-## Disclaimer
-
-This is a work in progress: expect a bumpy ride, for now. Check the top of the
-source stylesheet for the TODO/FIXME list if you're truly curious about the
-disgusting state this project is in.
-
-If you find something you don't like submit a bug report and I'll see if
-there's anything I can do.
-
